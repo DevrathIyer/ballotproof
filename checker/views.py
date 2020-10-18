@@ -50,12 +50,14 @@ def check(request,state="AZ",district=5):
 
     filename1 = "{}/{}-{}-1.json".format(state,state,district)
     filename2 = "{}/{}-{}-2.json".format(state, state, district)
+    logger.info(filename1)
     try:
-        raw1 = s3_client.get_object(Bucket='congressional-distrct-bucket', Key=filename1)['Body'].read().decode('utf-8')
-        raw2 = s3_client.get_object(Bucket='congressional-distrct-bucket', Key=filename2)['Body'].read().decode('utf-8')
+        raw1 = s3_client.get_object(Bucket='congressional-distrct-bucket', Key=filename1)['Body'].read()
+        raw2 = s3_client.get_object(Bucket='congressional-distrct-bucket', Key=filename2)['Body'].read()
     except:
         return render(request,'checker/no_annotation.html',{})
 
+    logger.info(json.loads(raw1))
     annotation = json.loads(raw1)
     annotationtwo = json.loads(raw2)
 
