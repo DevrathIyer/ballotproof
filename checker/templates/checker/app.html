@@ -1,3 +1,148 @@
-<script type="text/javascript">
-    var received_data  = "{{ annotation|safe }}";
-</script>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'checker/css/index.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <title>bootstrap4</title>
+
+  </head>
+  <body>
+
+    <div class="container w-110">
+        <div class="row justify-content-sm-center pt-4 pb-4">
+            <div class="col-4 text-center">
+              <img src="{% static "checker/img/logoHiRes.png" %}" class="img-fluid logo-img" alt="Responsive image">
+            </div>
+        </div>
+
+        <div class="row justify-content-sm-center">
+            <div class="col justify-content-sm-center">
+                <label class="btn btn-outline-secondary">
+                    <h2>Front of Ballot</h2>
+                    <svg width="10em" height="10em" viewBox="0 0 16 16" class="bi bi-camera" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M15 12V6a1 1 0 0 0-1-1h-1.172a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 9.173 3H6.828a1 1 0 0 0-.707.293l-.828.828A3 3 0 0 1 3.172 5H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                      <path fill-rule="evenodd" d="M8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                      <path d="M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                    </svg>
+                    <input type="file" class="custom-file-input" id="file1Input" name="file1" />
+
+                    <h2 id="file1status" class="">Upload</h2>
+                </label>
+            </div>
+            <div class="col">
+                <label class="btn btn-outline-secondary">
+                    <h2>Back of Ballot</h2>
+                    <svg width="10em" height="10em" viewBox="0 0 16 16" class="bi bi-camera" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M15 12V6a1 1 0 0 0-1-1h-1.172a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 9.173 3H6.828a1 1 0 0 0-.707.293l-.828.828A3 3 0 0 1 3.172 5H2a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
+                      <path fill-rule="evenodd" d="M8 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                      <path d="M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                    </svg>
+                    <input type="file" class="custom-file-input" id="file2Input" name="file2" />
+
+                    <h2 id="file2status" class="" >Upload</h2>
+                </label>
+            </div>
+        </div>
+
+        <div class="row justify-content-end mt-3">
+            <div class = "col-1 pr-0 justify-content-end">
+                <button id="goButton" class="btn btn-outline-secondary collapse">Go!</button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade hide" id="file1CropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Autocropped Front Side</h5>
+              </div>
+              <div class="modal-body">
+                <image id="file1AutoCrop"></image>
+              </div>
+              <div class="modal-footer">
+                  <p class="mr-3">Is this crop okay?</p>
+
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Adjust Manually</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade hide" id="file2CropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModal2Label">Autocropped Back Side</h5>
+              </div>
+              <div class="modal-body">
+                 <image id="file2AutoCrop"></image>
+              </div>
+              <div class="modal-footer">
+                Is this autocrop okay?
+
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Adjust Manually</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+
+    <script>
+     var file1ready = false;
+     var file2ready = false;
+        $(function () {
+        $('#file1Input').on("change", function(){
+            $('#file1status').text("Done!");
+            $('#file1status').toggleClass("text-primary");
+
+            $('#file1CropModal').modal('show');
+            file1ready = true;
+            if(file1ready && file2ready)
+            {
+                $('#goButton').toggleClass("collapse");
+            }
+        });
+        $('#file2Input').on("change", function(){
+            $('#file2status').text("Done!");
+            $('#file2status').toggleClass("text-primary");
+            $('#file2CropModal').modal('show');
+            file2ready = true;
+
+            if(file1ready && file2ready)
+            {
+                $('#goButton').toggleClass("collapse");
+            }
+        });
+        $('#clock-b').countdown('2020/11/3').on('update.countdown', function(event) {
+              var $this = $(this).html(event.strftime(''
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%D</span> Day%!d</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%H</span> Hr</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%M</span> Min</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%S</span> Sec</div>'));
+            });
+
+        });
+
+    </script>
+
+  <script async src="{% static 'checker/js/opencv.js' %}" onload="onOpenCvReady();" type="text/javascript"></script>
+
+  </body>
+</html>
+

@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="{% static 'checker/css/index.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <title>bootstrap4</title>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 
   </head>
   <body>
 
     <div class="container-full">
       <div class="row justify-content-sm-center pt-4 pb-4">
-        <div class="col-2 text-center">
-          <embed src="{% static "checker/img/logoOfficial.svg" %}" class="img-fluid" alt="Responsive image">
+        <div class="col-4 text-center">
+          <img src="{% static "checker/img/logoHiRes.png" %}" class="img-fluid logo-img" alt="Responsive image">
         </div>
       </div>
 
@@ -28,7 +27,7 @@
                 <div id="clock-b" class="countdown-circles d-flex flex-wrap justify-content-center pt-4"></div>
             </div>
         </div>
-        <div class="col-1 text-center"></div>
+        <div class="col-1 pr-0 text-center"></div>
         <div class="col pl-0 text-center my-auto">
             <h1 class="pl-0 text-white display-3">Voting made <b>faster</b>, <b>smarter</b>, and <b>more secure</b>.</h1>
             <img src= "{% static "checker/img/gradbar.png" %}"/>
@@ -83,22 +82,18 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
     <script>
         $(function () {
-        $('#collapseButton').click(function(event) {
-            $('#collapseExample').toggleClass("collapse");
+            $('#clock-b').countdown('2020/11/3').on('update.countdown', function(event) {
+              var $this = $(this).html(event.strftime(''
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%D</span> Day%!d</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%H</span> Hr</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%M</span> Min</div>'
+                + '<div class="holder m-2"><span class="h1 font-weight-bold">%S</span> Sec</div>'));
+            });
         });
-    $('#clock-b').countdown('2020/11/3').on('update.countdown', function(event) {
-      var $this = $(this).html(event.strftime(''
-        + '<div class="holder m-2"><span class="h1 font-weight-bold">%D</span> Day%!d</div>'
-        + '<div class="holder m-2"><span class="h1 font-weight-bold">%H</span> Hr</div>'
-        + '<div class="holder m-2"><span class="h1 font-weight-bold">%M</span> Min</div>'
-        + '<div class="holder m-2"><span class="h1 font-weight-bold">%S</span> Sec</div>'));
-    });
-
-});
-
     </script>
   </body>
 </html>
