@@ -1,0 +1,160 @@
+test\generatedballot-1-1.png,extra bubble,bad color,bad mark
+test\generatedballot-2-1.png,extra bubble,bad color,bad mark
+test\generatedballot-1-2.png
+test\generatedballot-2-2.png
+test\generatedballot-1-3.png,bad mark,blank section
+test\generatedballot-2-3.png,bad mark,blank section
+test\generatedballot-1-4.png,extra bubble,bad mark,blank section
+test\generatedballot-2-4.png,extra bubble,bad mark,blank section
+test\generatedballot-1-5.png,bad color,blank section
+test\generatedballot-2-5.png,bad color,blank section
+test\generatedballot-1-6.png,extra bubble,bad color
+test\generatedballot-2-6.png,extra bubble,bad color
+test\generatedballot-1-7.png,extra bubble,blank section
+test\generatedballot-2-7.png,extra bubble,blank section
+test\generatedballot-1-8.png,extra bubble,bad mark
+test\generatedballot-2-8.png,extra bubble,bad mark
+test\generatedballot-1-9.png,bad color,bad mark
+test\generatedballot-2-9.png,bad color,bad mark
+test\generatedballot-1-10.png,extra bubble,blank section
+test\generatedballot-2-10.png,extra bubble,blank section
+test\generatedballot-1-11.png,extra bubble,bad color,bad mark
+test\generatedballot-2-11.png,extra bubble,bad color,bad mark
+test\generatedballot-1-12.png,bad mark,blank section
+test\generatedballot-2-12.png,bad mark,blank section
+test\generatedballot-1-13.png,extra bubble
+test\generatedballot-2-13.png,extra bubble
+test\generatedballot-1-14.png,bad mark
+test\generatedballot-2-14.png,bad mark
+test\generatedballot-1-15.png,extra bubble,bad mark
+test\generatedballot-2-15.png,extra bubble,bad mark
+test\generatedballot-1-16.png,bad color,blank section,bad mark
+test\generatedballot-2-16.png,bad color,blank section,bad mark
+test\generatedballot-1-17.png,extra bubble,bad mark,blank section
+test\generatedballot-2-17.png,extra bubble,bad mark,blank section
+test\generatedballot-1-18.png,extra bubble,blank section
+test\generatedballot-2-18.png,extra bubble,blank section
+test\generatedballot-1-19.png,blank section
+test\generatedballot-2-19.png,blank section
+test\generatedballot-1-20.png,bad color,blank section,bad mark
+test\generatedballot-2-20.png,bad color,blank section,bad mark
+test\generatedballot-1-21.png,bad color,blank section,bad mark
+test\generatedballot-2-21.png,bad color,blank section,bad mark
+test\generatedballot-1-22.png,bad color
+test\generatedballot-2-22.png,bad color
+test\generatedballot-1-23.png,bad mark
+test\generatedballot-2-23.png,bad mark
+test\generatedballot-1-24.png,extra bubble,bad mark
+test\generatedballot-2-24.png,extra bubble,bad mark
+test\generatedballot-1-25.png,extra bubble,bad color,bad mark
+test\generatedballot-2-25.png,extra bubble,bad color,bad mark
+test\generatedballot-1-26.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-2-26.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-1-27.png,extra bubble,blank section
+test\generatedballot-2-27.png,extra bubble,blank section
+test\generatedballot-1-28.png,bad color,blank section,bad mark
+test\generatedballot-2-28.png,bad color,blank section,bad mark
+test\generatedballot-1-29.png,bad mark
+test\generatedballot-2-29.png,bad mark
+test\generatedballot-1-30.png,extra bubble,bad color,blank section
+test\generatedballot-2-30.png,extra bubble,bad color,blank section
+test\generatedballot-1-31.png
+test\generatedballot-2-31.png
+test\generatedballot-1-32.png,extra bubble
+test\generatedballot-2-32.png,extra bubble
+test\generatedballot-1-33.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-2-33.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-1-34.png,extra bubble,bad color
+test\generatedballot-2-34.png,extra bubble,bad color
+test\generatedballot-1-35.png,blank section
+test\generatedballot-2-35.png,blank section
+test\generatedballot-1-36.png,extra bubble,bad color,blank section
+test\generatedballot-2-36.png,extra bubble,bad color,blank section
+test\generatedballot-1-37.png,blank section
+test\generatedballot-2-37.png,blank section
+test\generatedballot-1-38.png
+test\generatedballot-2-38.png
+test\generatedballot-1-39.png
+test\generatedballot-2-39.png
+test\generatedballot-1-40.png,bad color,blank section,bad mark
+test\generatedballot-2-40.png,bad color,blank section,bad mark
+test\generatedballot-1-41.png,extra bubble,bad mark,blank section
+test\generatedballot-2-41.png,extra bubble,bad mark,blank section
+test\generatedballot-1-42.png,extra bubble,bad color,bad mark
+test\generatedballot-2-42.png,extra bubble,bad color,bad mark
+test\generatedballot-1-43.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-2-43.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-1-44.png,extra bubble,blank section
+test\generatedballot-2-44.png,extra bubble,blank section
+test\generatedballot-1-45.png,extra bubble
+test\generatedballot-2-45.png,extra bubble
+test\generatedballot-1-46.png,bad mark,blank section
+test\generatedballot-2-46.png,bad mark,blank section
+test\generatedballot-1-47.png,extra bubble,bad color,bad mark
+test\generatedballot-2-47.png,extra bubble,bad color,bad mark
+test\generatedballot-1-48.png,bad mark
+test\generatedballot-2-48.png,bad mark
+test\generatedballot-1-49.png,bad color,bad mark
+test\generatedballot-2-49.png,bad color,bad mark
+test\generatedballot-1-50.png,extra bubble,bad color
+test\generatedballot-2-50.png,extra bubble,bad color
+test\generatedballot-1-51.png,bad mark,blank section
+test\generatedballot-2-51.png,bad mark,blank section
+test\generatedballot-1-52.png,extra bubble,bad mark
+test\generatedballot-2-52.png,extra bubble,bad mark
+test\generatedballot-1-53.png,extra bubble,bad mark
+test\generatedballot-2-53.png,extra bubble,bad mark
+test\generatedballot-1-54.png,bad color,blank section,bad mark
+test\generatedballot-2-54.png,bad color,blank section,bad mark
+test\generatedballot-1-55.png,extra bubble,blank section
+test\generatedballot-2-55.png,extra bubble,blank section
+test\generatedballot-1-56.png,extra bubble,bad mark,blank section
+test\generatedballot-2-56.png,extra bubble,bad mark,blank section
+test\generatedballot-1-57.png,extra bubble
+test\generatedballot-2-57.png,extra bubble
+test\generatedballot-1-58.png,extra bubble,bad mark,blank section
+test\generatedballot-2-58.png,extra bubble,bad mark,blank section
+test\generatedballot-1-59.png,bad mark
+test\generatedballot-2-59.png,bad mark
+test\generatedballot-1-60.png,blank section
+test\generatedballot-2-60.png,blank section
+test\generatedballot-1-61.png,bad color,blank section
+test\generatedballot-2-61.png,bad color,blank section
+test\generatedballot-1-62.png,bad color,blank section
+test\generatedballot-2-62.png,bad color,blank section
+test\generatedballot-1-63.png,extra bubble,bad mark
+test\generatedballot-2-63.png,extra bubble,bad mark
+test\generatedballot-1-64.png,extra bubble,blank section
+test\generatedballot-2-64.png,extra bubble,blank section
+test\generatedballot-1-65.png
+test\generatedballot-2-65.png
+test\generatedballot-1-66.png,bad mark
+test\generatedballot-2-66.png,bad mark
+test\generatedballot-1-67.png,bad mark,blank section
+test\generatedballot-2-67.png,bad mark,blank section
+test\generatedballot-1-68.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-2-68.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-1-69.png,extra bubble,bad mark,blank section
+test\generatedballot-2-69.png,extra bubble,bad mark,blank section
+test\generatedballot-1-70.png,extra bubble
+test\generatedballot-2-70.png,extra bubble
+test\generatedballot-1-71.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-2-71.png,extra bubble,bad color,blank section,bad mark
+test\generatedballot-1-72.png,extra bubble,bad color
+test\generatedballot-2-72.png,extra bubble,bad color
+test\generatedballot-1-73.png,extra bubble
+test\generatedballot-2-73.png,extra bubble
+test\generatedballot-1-74.png,extra bubble,bad color,bad mark
+test\generatedballot-2-74.png,extra bubble,bad color,bad mark
+test\generatedballot-1-75.png,bad color
+test\generatedballot-2-75.png,bad color
+test\generatedballot-1-76.png,extra bubble,bad color,blank section
+test\generatedballot-2-76.png,extra bubble,bad color,blank section
+test\generatedballot-1-77.png,blank section
+test\generatedballot-2-77.png,blank section
+test\generatedballot-1-78.png,extra bubble,bad color
+test\generatedballot-2-78.png,extra bubble,bad color
+test\generatedballot-1-79.png,bad mark
+test\generatedballot-2-79.png,bad mark
+test\generatedballot-1-80.png,bad mark
+test\generatedballot-2-80.png,bad mark

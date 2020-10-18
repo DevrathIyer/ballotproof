@@ -1,0 +1,1199 @@
+{
+  "state": "AZ",
+  "district": 5,
+  "page": 1,
+  "sections": [
+    {
+      "desc": "president / vice president",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 130,
+        "TL_Y": 960,
+        "BR_X": 618,
+        "BR_Y": 1660
+      },
+      "bubbles": [
+        {
+          "TL_X": 560,
+          "TL_Y": 1075,
+          "BR_X": 593,
+          "BR_Y": 1100,
+          "text": "trump pence"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 1225,
+          "BR_X": 593,
+          "BR_Y": 1250,
+          "text": "biden harris"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 1375,
+          "BR_X": 593,
+          "BR_Y": 1400,
+          "text": "jorgensen cohen"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 1525,
+          "BR_X": 593,
+          "BR_Y": 1550,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 130,
+          "TL_Y": 1550,
+          "BR_X": 618,
+          "BR_Y": 1660
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "us senate",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 130,
+        "TL_Y": 1665,
+        "BR_X": 618,
+        "BR_Y": 1910
+      },
+      "bubbles": [
+        {
+          "TL_X": 560,
+          "TL_Y": 1775,
+          "BR_X": 593,
+          "BR_Y": 1800,
+          "text": "mcsally"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 1825,
+          "BR_X": 593,
+          "BR_Y": 1850,
+          "text": "kelly"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 1875,
+          "BR_X": 593,
+          "BR_Y": 1900,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 270,
+          "TL_Y": 1869,
+          "BR_X": 554,
+          "BR_Y": 1906
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "us rep",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 130,
+        "TL_Y": 1910,
+        "BR_X": 618,
+        "BR_Y": 2160
+      },
+      "bubbles": [
+        {
+          "TL_X": 560,
+          "TL_Y": 2025,
+          "BR_X": 593,
+          "BR_Y": 2050,
+          "text": "biggs"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2075,
+          "BR_X": 593,
+          "BR_Y": 2100,
+          "text": "greene"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2125,
+          "BR_X": 593,
+          "BR_Y": 2150,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 290,
+          "TL_Y": 2115,
+          "BR_X": 545,
+          "BR_Y": 2158
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "state senate",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 130,
+        "TL_Y": 2215,
+        "BR_X": 618,
+        "BR_Y": 2463
+      },
+      "bubbles": [
+        {
+          "TL_X": 560,
+          "TL_Y": 2325,
+          "BR_X": 593,
+          "BR_Y": 2350,
+          "text": "mesnard"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2375,
+          "BR_X": 593,
+          "BR_Y": 2400,
+          "text": "kurdoglu"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2425,
+          "BR_X": 593,
+          "BR_Y": 2450,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 290,
+          "TL_Y": 2415,
+          "BR_X": 545,
+          "BR_Y": 2460
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "state rep",
+      "max": 2,
+      "secCoords": {
+        "TL_X": 130,
+        "TL_Y": 2463,
+        "BR_X": 618,
+        "BR_Y": 2813
+      },
+      "bubbles": [
+        {
+          "TL_X": 560,
+          "TL_Y": 2575,
+          "BR_X": 593,
+          "BR_Y": 2600,
+          "text": "weninger"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2625,
+          "BR_X": 593,
+          "BR_Y": 2650,
+          "text": "harris"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2675,
+          "BR_X": 593,
+          "BR_Y": 2700,
+          "text": "pawlik"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2725,
+          "BR_X": 593,
+          "BR_Y": 2750,
+          "text": "write-in 1"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2775,
+          "BR_X": 593,
+          "BR_Y": 2800,
+          "text": "write-in 2"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 290,
+          "TL_Y": 2715,
+          "BR_X": 545,
+          "BR_Y": 2760
+        },
+        {
+          "TL_X": 290,
+          "TL_Y": 2763,
+          "BR_X": 545,
+          "BR_Y": 2810
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "corporation commisioner",
+      "max": 3,
+      "secCoords": {
+        "TL_X": 130,
+        "TL_Y": 2815,
+        "BR_X": 618,
+        "BR_Y": 3363
+      },
+      "bubbles": [
+        {
+          "TL_X": 560,
+          "TL_Y": 2925,
+          "BR_X": 593,
+          "BR_Y": 2950,
+          "text": "marquez"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 2975,
+          "BR_X": 593,
+          "BR_Y": 3000,
+          "text": "o'connor"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 3025,
+          "BR_X": 593,
+          "BR_Y": 3050,
+          "text": "sloan"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 3075,
+          "BR_X": 593,
+          "BR_Y": 3100,
+          "text": "mundell"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 3125,
+          "BR_X": 593,
+          "BR_Y": 3150,
+          "text": "stanfield"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 3175,
+          "BR_X": 593,
+          "BR_Y": 3200,
+          "text": "tovar"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 3225,
+          "BR_X": 593,
+          "BR_Y": 3250,
+          "text": "write-in 1"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 3275,
+          "BR_X": 593,
+          "BR_Y": 3300,
+          "text": "write-in 2"
+        },
+        {
+          "TL_X": 560,
+          "TL_Y": 3325,
+          "BR_X": 593,
+          "BR_Y": 3350,
+          "text": "write-in 3"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 290,
+          "TL_Y": 3215,
+          "BR_X": 545,
+          "BR_Y": 3260
+        },
+        {
+          "TL_X": 290,
+          "TL_Y": 3265,
+          "BR_X": 545,
+          "BR_Y": 3310
+        },
+        {
+          "TL_X": 290,
+          "TL_Y": 3315,
+          "BR_X": 545,
+          "BR_Y": 3360
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "board of supervisors",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 511,
+        "BR_X": 1101,
+        "BR_Y": 813
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 675,
+          "BR_X": 1079,
+          "BR_Y": 700,
+          "text": "sellers"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 725,
+          "BR_X": 1079,
+          "BR_Y": 750,
+          "text": "hodge"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 775,
+          "BR_X": 1079,
+          "BR_Y": 800,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 753,
+          "TL_Y": 765,
+          "BR_X": 1041,
+          "BR_Y": 810
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "county assessor",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 813,
+        "BR_X": 1101,
+        "BR_Y": 1063
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 925,
+          "BR_X": 1079,
+          "BR_Y": 950,
+          "text": "cook"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 975,
+          "BR_X": 1079,
+          "BR_Y": 1000,
+          "text": "connor"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 1025,
+          "BR_X": 1079,
+          "BR_Y": 1050,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 753,
+          "TL_Y": 1015,
+          "BR_X": 1041,
+          "BR_Y": 1060
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "county attorney",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 1066,
+        "BR_X": 1101,
+        "BR_Y": 1312
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 1175,
+          "BR_X": 1079,
+          "BR_Y": 1200,
+          "text": "adel"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 1225,
+          "BR_X": 1079,
+          "BR_Y": 1250,
+          "text": "gunnigle"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 1275,
+          "BR_X": 1079,
+          "BR_Y": 1300,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 753,
+          "TL_Y": 1265,
+          "BR_X": 1041,
+          "BR_Y": 1310
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "county recorder",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 1313,
+        "BR_X": 1101,
+        "BR_Y": 1562
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 1425,
+          "BR_X": 1079,
+          "BR_Y": 1450,
+          "text": "richer"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 1475,
+          "BR_X": 1079,
+          "BR_Y": 1500,
+          "text": "fontes"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 1525,
+          "BR_X": 1079,
+          "BR_Y": 1550,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 753,
+          "TL_Y": 1515,
+          "BR_X": 1041,
+          "BR_Y": 1560
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "county school superintendent",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 1563,
+        "BR_X": 1101,
+        "BR_Y": 1813
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 1675,
+          "BR_X": 1079,
+          "BR_Y": 1700,
+          "text": "watson"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 1725,
+          "BR_X": 1079,
+          "BR_Y": 1750,
+          "text": "casteen"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 1775,
+          "BR_X": 1079,
+          "BR_Y": 1800,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 753,
+          "TL_Y": 1765,
+          "BR_X": 1041,
+          "BR_Y": 1810
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "sherrif",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 1812,
+        "BR_X": 1101,
+        "BR_Y": 2062
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 1925,
+          "BR_X": 1079,
+          "BR_Y": 1950,
+          "text": "sheridan"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 1975,
+          "BR_X": 1079,
+          "BR_Y": 2000,
+          "text": "pezone"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 2025,
+          "BR_X": 1079,
+          "BR_Y": 2050,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 753,
+          "TL_Y": 2015,
+          "BR_X": 1041,
+          "BR_Y": 2060
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "county treasurer",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 1812,
+        "BR_X": 1101,
+        "BR_Y": 2066
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 2175,
+          "BR_X": 1079,
+          "BR_Y": 2200,
+          "text": "allen"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 2225,
+          "BR_X": 1079,
+          "BR_Y": 2250,
+          "text": "toporek"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 2275,
+          "BR_X": 1079,
+          "BR_Y": 2300,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 753,
+          "TL_Y": 2265,
+          "BR_X": 1041,
+          "BR_Y": 2310
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "special healthcare",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 2313,
+        "BR_X": 1101,
+        "BR_Y": 2714
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 2575,
+          "BR_X": 1079,
+          "BR_Y": 2600,
+          "text": "harden"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 2625,
+          "BR_X": 1079,
+          "BR_Y": 2650,
+          "text": "farnsworth"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 2675,
+          "BR_X": 1079,
+          "BR_Y": 2700,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 753,
+          "TL_Y": 2720,
+          "BR_X": 1041,
+          "BR_Y": 2765
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "prop 449",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 614,
+        "TL_Y": 2713,
+        "BR_X": 1101,
+        "BR_Y": 3315
+      },
+      "bubbles": [
+        {
+          "TL_X": 1046,
+          "TL_Y": 3225,
+          "BR_X": 1079,
+          "BR_Y": 3250,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1046,
+          "TL_Y": 3275,
+          "BR_X": 1079,
+          "BR_Y": 3300,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "county community college at-large",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 515,
+        "BR_X": 1587,
+        "BR_Y": 812
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 675,
+          "BR_X": 1566,
+          "BR_Y": 700,
+          "text": "thor"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 725,
+          "BR_X": 1566,
+          "BR_Y": 750,
+          "text": "boggs"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 775,
+          "BR_X": 1566,
+          "BR_Y": 800,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 1242,
+          "TL_Y": 765,
+          "BR_X": 1532,
+          "BR_Y": 810
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "county community college district 1",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 812,
+        "BR_X": 1587,
+        "BR_Y": 1112
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 975,
+          "BR_X": 1566,
+          "BR_Y": 1000,
+          "text": "smith"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 1025,
+          "BR_X": 1566,
+          "BR_Y": 1050,
+          "text": "hendrix"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 1075,
+          "BR_X": 1566,
+          "BR_Y": 1100,
+          "text": "write-in"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 1242,
+          "TL_Y": 1065,
+          "BR_X": 1532,
+          "BR_Y": 1110
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "school gov. board member",
+      "max": 3,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 1164,
+        "BR_X": 1587,
+        "BR_Y": 1563
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 1275,
+          "BR_X": 1566,
+          "BR_Y": 1300,
+          "text": "wirth"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 1325,
+          "BR_X": 1566,
+          "BR_Y": 1350,
+          "text": "mozdzen"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 1375,
+          "BR_X": 1566,
+          "BR_Y": 1400,
+          "text": "olive"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 1425,
+          "BR_X": 1566,
+          "BR_Y": 1450,
+          "text": "write-in 1"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 1475,
+          "BR_X": 1566,
+          "BR_Y": 1500,
+          "text": "write-in 2"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 1525,
+          "BR_X": 1566,
+          "BR_Y": 1550,
+          "text": "write-in 3"
+        }
+      ],
+      "writeins": [
+        {
+          "TL_X": 1242,
+          "TL_Y": 1415,
+          "BR_X": 1532,
+          "BR_Y": 1460
+        },
+        {
+          "TL_X": 1242,
+          "TL_Y": 1465,
+          "BR_X": 1532,
+          "BR_Y": 1510
+        },
+        {
+          "TL_X": 1242,
+          "TL_Y": 1515,
+          "BR_X": 1532,
+          "BR_Y": 1560
+        }
+      ],
+      "signatures": null
+    },
+    {
+      "desc": "question 1",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 1613,
+        "BR_X": 1587,
+        "BR_Y": 1915
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 1825,
+          "BR_X": 1566,
+          "BR_Y": 1850,
+          "text": "for"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 1875,
+          "BR_X": 1566,
+          "BR_Y": 1900,
+          "text": "against"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain brutinel",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 2062,
+        "BR_X": 1587,
+        "BR_Y": 2162
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 2075,
+          "BR_X": 1566,
+          "BR_Y": 2100,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 2125,
+          "BR_X": 1566,
+          "BR_Y": 2150,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain gould",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 2162,
+        "BR_X": 1587,
+        "BR_Y": 2262
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 2175,
+          "BR_X": 1566,
+          "BR_Y": 2200,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 2225,
+          "BR_X": 1566,
+          "BR_Y": 2250,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain lopez",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 2262,
+        "BR_X": 1587,
+        "BR_Y": 2362
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 2275,
+          "BR_X": 1566,
+          "BR_Y": 2300,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 2325,
+          "BR_X": 1566,
+          "BR_Y": 2350,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain howe",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 2562,
+        "BR_X": 1587,
+        "BR_Y": 2662
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 2575,
+          "BR_X": 1566,
+          "BR_Y": 2600,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 2625,
+          "BR_X": 1566,
+          "BR_Y": 2650,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain mcmurdie",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 2662,
+        "BR_X": 1587,
+        "BR_Y": 2762
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 2675,
+          "BR_X": 1566,
+          "BR_Y": 2700,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 2725,
+          "BR_X": 1566,
+          "BR_Y": 2750,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain morse",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 2762,
+        "BR_X": 1587,
+        "BR_Y": 2862
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 2775,
+          "BR_X": 1566,
+          "BR_Y": 2800,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 2825,
+          "BR_X": 1566,
+          "BR_Y": 2850,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain perkins",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 2862,
+        "BR_X": 1587,
+        "BR_Y": 2962
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 2875,
+          "BR_X": 1566,
+          "BR_Y": 2900,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 2925,
+          "BR_X": 1566,
+          "BR_Y": 2950,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain thumma",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 2962,
+        "BR_X": 1587,
+        "BR_Y": 3062
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 2975,
+          "BR_X": 1566,
+          "BR_Y": 3000,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 3025,
+          "BR_X": 1566,
+          "BR_Y": 3050,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain weinzweig",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 3062,
+        "BR_X": 1587,
+        "BR_Y": 3162
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 3075,
+          "BR_X": 1566,
+          "BR_Y": 3100,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 3125,
+          "BR_X": 1566,
+          "BR_Y": 3150,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain adleman",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 3314,
+        "BR_X": 1587,
+        "BR_Y": 3414
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 3325,
+          "BR_X": 1566,
+          "BR_Y": 3350,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 3375,
+          "BR_X": 1566,
+          "BR_Y": 3400,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    },
+    {
+      "desc": "retain agne",
+      "max": 1,
+      "secCoords": {
+        "TL_X": 1104,
+        "TL_Y": 3414,
+        "BR_X": 1587,
+        "BR_Y": 3514
+      },
+      "bubbles": [
+        {
+          "TL_X": 1533,
+          "TL_Y": 3425,
+          "BR_X": 1566,
+          "BR_Y": 3450,
+          "text": "yes"
+        },
+        {
+          "TL_X": 1533,
+          "TL_Y": 3475,
+          "BR_X": 1566,
+          "BR_Y": 3500,
+          "text": "no"
+        }
+      ],
+      "writeins": null,
+      "signatures": null
+    }
+  ]
+}
