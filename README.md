@@ -52,6 +52,8 @@ The generation script (generate.py) enables the generation of semi-randomized
 ballots that fit certain satisfiability criteria. We use these sample ballots
 as tests for model functionality.
 
+Link to test files: https://drive.google.com/drive/folders/152FkSxuSryo4LHUHic-ry8kje_5qSirt?usp=sharing
+
 ## Attributions
 - A huge thanks to HackGT for setting up this great event, the opportunity to
 compete, and the great events over the weekend.
