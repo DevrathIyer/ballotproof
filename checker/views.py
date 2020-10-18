@@ -48,15 +48,16 @@ def check(request,state="AZ",district=5):
             Bucket="congressional-distrct-bucket",
             MaxKeys=100 )
 
-    """
-    filename = "{}/{}-{}-2.json".format(state,state,district)
+    filename1 = "{}/{}-{}-1.json".format(state,state,district)
+    filename2 = "{}/{}-{}-2.json".format(state, state, district)
     try:
-        raw = s3_client.get_object(Bucket='congressional-distrct-bucket', Key=filename)['Body'].read().decode('utf-8')
+        raw1 = s3_client.get_object(Bucket='congressional-distrct-bucket', Key=filename1)['Body'].read().decode('utf-8')
+        raw2 = s3_client.get_object(Bucket='congressional-distrct-bucket', Key=filename2)['Body'].read().decode('utf-8')
     except:
         return render(request,'checker/no_annotation.html',{})
 
-    annotation = json.loads(raw)
-    """
-    annotation = {"hello":"hi"}
+    annotation = json.loads(raw1)
+    annotationtwo = json.loads(raw2)
 
-    return render(request, 'checker/app.html', {"state":state,"district":district,"annotation":annotation})
+
+    return render(request, 'checker/app.html', {"state":state,"district":district,"annotation":annotation,"annotationtwo":annotationtwo})

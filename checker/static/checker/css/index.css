@@ -29,18 +29,18 @@ select {
 
 .modal-body {
     position: relative;
-    width:1000px;
+    width:1200px;
     padding: 15px;
     overflow-y:auto;
 }
 
 .modal-content {
-width:1000px;
+width:1200px;
 }
 
 .modal-dialog {
     overflow : visible;
-    margin-left:auto;
+    margin-left:5rem;
     margin-right:auto;
 }
 
