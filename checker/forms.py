@@ -54,7 +54,7 @@ STATE_CHOICES = [('AL','AL'),
 ('WY','WY')]
 
 class AddressForm(forms.Form):
-    street = forms.CharField(required=True)
-    city = forms.CharField(required=True)
+    street = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Street Address'}))
+    city = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'City'}))
     state = forms.ChoiceField(required=True,choices=STATE_CHOICES)
-    zip = forms.IntegerField(min_value=0,max_value=100000)
+    zip = forms.IntegerField(min_value=0,max_value=100000, widget=forms.NumberInput(attrs={'placeholder': 'Zip'}))

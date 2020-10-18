@@ -1,7 +1,105 @@
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit">
-  </form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'checker/css/index.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <title>bootstrap4</title>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+
+    <div class="container-full">
+      <div class="row justify-content-sm-center pt-4 pb-4">
+        <div class="col-2 text-center">
+          <embed src="{% static "checker/img/logoOfficial.svg" %}" class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+
+
+      <div class="row justify-content-sm-center pt-5 pl-5 pr-2 bg-dark">
+        <div class="col">
+            <div class="row rounded bg-gradient-3 text-white shadow p-5 text-center mb-5 justify-content-center">
+                <h2 class="mb-4 font-weight-bold text-uppercase text-underline">Time until election day</h2>
+                <div id="clock-b" class="countdown-circles d-flex flex-wrap justify-content-center pt-4"></div>
+            </div>
+        </div>
+        <div class="col-1 text-center"></div>
+        <div class="col pl-0 text-center my-auto">
+            <h1 class="pl-0 text-white display-3">Voting made <b>faster</b>, <b>smarter</b>, and <b>more secure</b>.</h1>
+            <img src= "{% static "checker/img/gradbar.png" %}"/>
+        </div>
+      </div>
+       <div class="row justify-content-sm-center pt-4">
+          <button id="collapseButton" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Get started <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                        </svg>
+          </button>
+      </div>
+
+      <div class="row justify-content-sm-center pt-4">
+        <div class="collapse" id="collapseExample">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="row mb-1">
+                <div class="col">
+                    {{ form.street }}
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-6">
+                    {{ form.city }}
+                </div>
+                <div class="col-2 pl-0">
+                    {{ form.state }}
+                </div>
+                <div class="col-4 pl-0">
+                    {{ form.zip }}
+                </div>
+
+            </div>
+            <div class="row mb-1 justify-content-sm-center">
+                <div class="col-6">
+                    <input class="btn btn-outline-secondary" type="submit" value="Submit">
+                </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
+    <script>
+        $(function () {
+        $('#collapseButton').click(function(event) {
+            $('#collapseExample').toggleClass("collapse");
+        });
+    $('#clock-b').countdown('2020/11/3').on('update.countdown', function(event) {
+      var $this = $(this).html(event.strftime(''
+        + '<div class="holder m-2"><span class="h1 font-weight-bold">%D</span> Day%!d</div>'
+        + '<div class="holder m-2"><span class="h1 font-weight-bold">%H</span> Hr</div>'
+        + '<div class="holder m-2"><span class="h1 font-weight-bold">%M</span> Min</div>'
+        + '<div class="holder m-2"><span class="h1 font-weight-bold">%S</span> Sec</div>'));
+    });
+
+});
+
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,115 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow:hidden;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+input{
+ min-width: 0;
+ width: 100%;
+ }
+
+select {
+    height: 30px;
+}
+
+
+/*
+*
+* ==================================================
+* UNNECESSARY STYLE - JUST TO MAKE IT LOOKS NICE
+* ==================================================
+*
+*/
+.countdown {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.countdown span {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 3rem;
+    margin-left: 0.8rem;
+}
+
+.countdown span:first-of-type {
+    margin-left: 0;
+}
+
+.countdown-circles {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.countdown-circles span {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-circles span:first-of-type {
+    margin-left: 0;
+}
+
+
+/*
+*
+* ==================================================
+* FOR DEMO PURPOSES
+* ==================================================
+*
+*/
+body {
+    min-height: 100vh;
+}
+
+.bg-gradient-1 {
+    background: #7f7fd5;
+    background: -webkit-linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+    background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+}
+
+.bg-gradient-2 {
+    background: #654ea3;
+    background: -webkit-linear-gradient(to right, #654ea3, #eaafc8);
+    background: linear-gradient(to right, #654ea3, #eaafc8);
+}
+
+.bg-gradient-3 {
+    background: #ff416c;
+    background: -webkit-linear-gradient(to right, #ff416c, #ff4b2b);
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+}
+
+.bg-gradient-4 {
+    background: #007991;
+    background: -webkit-linear-gradient(to right, #007991, #78ffd6);
+    background: linear-gradient(to right, #007991, #78ffd6);
+}
+
+.rounded {
+    border-radius: 1rem !important;
+}
+
+.btn-demo {
+    padding: 0.5rem 2rem !important;
+    border-radius: 30rem !important;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold !important;
+}
+
+.btn-demo:hover, .btn-demo:focus {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.5);
+}

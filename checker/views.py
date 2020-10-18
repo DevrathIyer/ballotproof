@@ -49,14 +49,12 @@ def check(request,state="AZ",district=5):
             MaxKeys=100 )
 
 
-    filename = "{}/{}-{}.json".format(state,state,district)
-    logger.info(filename)
+    filename = "{}/{}-{}-2.json".format(state,state,district)
     try:
         raw = s3_client.get_object(Bucket='congressional-distrct-bucket', Key=filename)['Body'].read().decode('utf-8')
     except:
         return render(request,'checker/no_annotation.html',{})
 
-    logger.info(raw)
     annotation = json.loads(raw)
 
     return render(request, 'checker/app.html', {"state":state,"district":district,"annotation":annotation})
