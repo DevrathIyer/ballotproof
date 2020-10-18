@@ -1,6 +1,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
-    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y: auto;
 }
 
 .container-full {
@@ -19,6 +20,28 @@ select {
 
 .logo-img{
     width:400px;
+}
+
+.modal {
+  overflow-y:auto;
+}
+
+
+.modal-body {
+    position: relative;
+    width:1000px;
+    padding: 15px;
+    overflow-y:auto;
+}
+
+.modal-content {
+width:1000px;
+}
+
+.modal-dialog {
+    overflow : visible;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 

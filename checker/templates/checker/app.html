@@ -54,6 +54,7 @@
             </div>
         </div>
 
+
         <!-- Modal -->
         <div class="modal fade hide" id="file1CropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -62,17 +63,36 @@
                 <h5 class="modal-title" id="exampleModalLabel">Autocropped Front Side</h5>
               </div>
               <div class="modal-body">
-                <image id="file1AutoCrop"></image>
+                  <img class="d-none" id="file1AutoCrop"/>
+                    <canvas id="canvas1AutoOutput" ></canvas>
               </div>
               <div class="modal-footer">
                   <p class="mr-3">Is this crop okay?</p>
 
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Adjust Manually</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+                  <button type="button" class="btn btn-secondary" id="manualTrigger1" data-dismiss="modal">Adjust Manually</button>
+                <button type="button" class="btn btn-primary" id="autoAccept1" data-dismiss="modal">Continue</button>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="modal fade hide" id="file1ManualModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="file1ManualModalLabel">Manually crop Front Side</h5>
+              </div>
+              <div class="modal-body">
+                  <img class="d-none" id="file1ManualCrop"/>
+                    <canvas id="manual1Input" ></canvas>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="modal fade hide" id="file2CropModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -80,17 +100,59 @@
                 <h5 class="modal-title" id="exampleModal2Label">Autocropped Back Side</h5>
               </div>
               <div class="modal-body">
-                 <image id="file2AutoCrop"></image>
+                 <image class="d-none" id="file2AutoCrop"></image>
+                  <canvas id="canvas2AutoOutput" ></canvas>
               </div>
               <div class="modal-footer">
-                Is this autocrop okay?
+                <p class="mr-3">Is this crop okay?</p>
 
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Adjust Manually</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+                  <button type="button" class="btn btn-secondary" id="manualTrigger2" data-dismiss="modal">Adjust Manually</button>
+                <button type="button" class="btn btn-primary" id="autoAccept2" data-dismiss="modal">Continue</button>
               </div>
             </div>
           </div>
         </div>
+        <div class="modal fade hide" id="file2ManualModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="file2ManualModalLabel">Manually crop Front Side</h5>
+              </div>
+              <div class="modal-body">
+                  <img class="d-none" id="file2ManualCrop"/>
+                    <canvas id="manual2Input" ></canvas>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade hide" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="resultsLabel"></h5>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col">
+                         <h2 class="text-center">Section</h2>
+
+                     </div>
+                      <div class="col">
+                         <h2 class="text-center">Result</h2>
+                     </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
     </div>
 
@@ -103,13 +165,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js"></script>
 
+    <script src="{% static 'checker/js/opencv.js' %}" onload="console.log('hello');" type="text/javascript"></script>
     <script>
+
      var file1ready = false;
      var file2ready = false;
+     var dstFinal1;
+     var dstFinal2;
+
         $(function () {
+        let finalSize = new cv.Size(1700, 3800);
         $('#file1Input').on("change", function(){
             $('#file1status').text("Done!");
             $('#file1status').toggleClass("text-primary");
+
+            document.getElementById('file1AutoCrop').src = URL.createObjectURL($('#file1Input').prop('files')[0]);
 
             $('#file1CropModal').modal('show');
             file1ready = true;
@@ -118,9 +188,21 @@
                 $('#goButton').toggleClass("collapse");
             }
         });
+        $('#autoAccept1').click(function(){
+            let finalSize = new cv.Size(1700, 3800);
+            featureExtractDetect1(dstFinal1, finalSize)
+        });
+        $('#manualTrigger1').click(function(){
+            $('#file1ManualModal').modal('show');
+            manual1();
+        });
+
         $('#file2Input').on("change", function(){
             $('#file2status').text("Done!");
             $('#file2status').toggleClass("text-primary");
+
+            document.getElementById('file2AutoCrop').src = URL.createObjectURL($('#file2Input').prop('files')[0]);
+
             $('#file2CropModal').modal('show');
             file2ready = true;
 
@@ -128,6 +210,18 @@
             {
                 $('#goButton').toggleClass("collapse");
             }
+        });
+        $('#manualTrigger2').click(function(){
+            $('#file2ManualModal').modal('show');
+            manual2();
+        });
+        $('#autoAccept2').click(function(){
+            let finalSize = new cv.Size(1700, 3800);
+            featureExtractDetect2(dstFinal2, finalSize)
+        });
+
+        $('#goButton').click(function(){
+            $('#resultsModal').modal('show');
         });
         $('#clock-b').countdown('2020/11/3').on('update.countdown', function(event) {
               var $this = $(this).html(event.strftime(''
@@ -141,7 +235,622 @@
 
     </script>
 
-  <script async src="{% static 'checker/js/opencv.js' %}" onload="onOpenCvReady();" type="text/javascript"></script>
+    <script type="text/javascript">
+var annotationJSON = getAnnotation();
+img1Element = document.getElementById('file1AutoCrop');
+img1Element.onload = function() {
+  let finalSize = new cv.Size(1700, 3800);
+
+  dstFinal1 = auto1();
+  }
+
+img2Element = document.getElementById('file2AutoCrop');
+img2Element.onload = function() {
+let finalSize = new cv.Size(1700, 3800);
+
+dstFinal2 = auto2();
+}
+
+function auto1() {
+  let src = cv.imread(img1Element);
+  let dst = new cv.Mat();
+  let dstt = new cv.Mat();
+  let ksize = new cv.Size(5,5);
+  cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
+  cv.Canny(dst, dst, 75, 200, 3, false);
+  cv.threshold(dst, dst, 50, 255, cv.THRESH_BINARY);
+
+  let contours = new cv.MatVector();
+  let hierarchy = new cv.Mat();
+  cv.findContours(dst, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+
+  // for (let i = 0; i < contours.size(); ++i) {
+  //   let color = new cv.Scalar(240, 248, 255);
+  //   cv.drawContours(dst, contours, i, color, 5, cv.LINE_8, hierarchy, 100);
+  // }
+
+  let areaarr = [];
+
+  for (let i = 0; i < contours.size(); i++) {
+    areaarr.push(cv.arcLength(contours.get(i), false))
+  }
+
+  areaarr.sort(function(a, b){return a-b});
+  areaarr.reverse();
+  newarr = areaarr.slice(0,1);
+  //console.log(areaarr)
+
+  for (let i = 0; i < contours.size(); i++) {
+    let color = new cv.Scalar(240, 248, 255);
+    let area = cv.arcLength(contours.get(i), false);
+    if (newarr.includes(area)) {
+      realContour = contours.get(i);
+      //console.log(area)
+      cv.drawContours(dst, contours, i, color, 5, cv.LINE_8, hierarchy, 100);
+    }
+  }
+
+  contPeri = cv.arcLength(realContour, true)
+  contApprox = new cv.Mat();
+  cv.approxPolyDP(realContour, contApprox, 0.02 * contPeri, true)
+
+  let corner1 = new cv.Point(contApprox.data32S[0], contApprox.data32S[1]);
+  let corner2 = new cv.Point(contApprox.data32S[2], contApprox.data32S[3]);
+  let corner3 = new cv.Point(contApprox.data32S[4], contApprox.data32S[5]);
+  let corner4 = new cv.Point(contApprox.data32S[6], contApprox.data32S[7]);
+
+  let cornerArray = [{ corner: corner1 }, { corner: corner2 }, { corner: corner3 }, { corner: corner4 }];
+
+  cornerArray.sort((item1, item2) => { return (item1.corner.y < item2.corner.y) ? -1 : (item1.corner.y > item2.corner.y) ? 1 : 0; }).slice(0, 5);
+
+  let tl = cornerArray[0].corner.x < cornerArray[1].corner.x ? cornerArray[0] : cornerArray[1];
+  let tr = cornerArray[0].corner.x > cornerArray[1].corner.x ? cornerArray[0] : cornerArray[1];
+  let bl = cornerArray[2].corner.x < cornerArray[3].corner.x ? cornerArray[2] : cornerArray[3];
+  let br = cornerArray[2].corner.x > cornerArray[3].corner.x ? cornerArray[2] : cornerArray[3];
+
+  let widthBottom = Math.hypot(br.corner.x - bl.corner.x, br.corner.y - bl.corner.y);
+  let widthTop = Math.hypot(tr.corner.x - tl.corner.x, tr.corner.y - tl.corner.y);
+  let theWidth = (widthBottom > widthTop) ? widthBottom : widthTop;
+  let heightRight = Math.hypot(tr.corner.x - br.corner.x, tr.corner.y - br.corner.y);
+  let heightLeft = Math.hypot(tl.corner.x - bl.corner.x, tr.corner.y - bl.corner.y);
+  let theHeight = (heightRight > heightLeft) ? heightRight : heightLeft;
+
+  let finalDestCoords = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, theWidth - 1, 0, theWidth - 1, theHeight - 1, 0, theHeight - 1]); //
+  let srcCoords = cv.matFromArray(4, 1, cv.CV_32FC2, [tl.corner.x, tl.corner.y, tr.corner.x, tr.corner.y, br.corner.x, br.corner.y, bl.corner.x, bl.corner.y]);
+  let dsize = new cv.Size(theWidth, theHeight);
+  let M = cv.getPerspectiveTransform(srcCoords, finalDestCoords)
+  cv.warpPerspective(src, dstt, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+
+  let dsize2 = new cv.Size(850, 1900);
+  cv.resize(dstt, dstt, dsize2, 0, 0, cv.INTER_AREA);
+
+  cv.imshow('canvas1AutoOutput', dstt);
+  src.delete();
+  dst.delete();
+  contours.delete();
+  hierarchy.delete();
+
+  return dstt;
+}
+
+function manual1() {
+
+
+  src = cv.imread(img1Element);
+  src_display = cv.imread(img1Element);
+  let dsize2 = new cv.Size(src_display.cols/2, src_display.rows/2);
+  cv.resize(src_display, src_display, dsize2, 0, 0, cv.INTER_AREA);
+  cv.imshow("manual1Input", src_display);
+  var cornerArray = [];
+
+  //let canvasElem = document.querySelector("canvas");
+  let canvasElem = document.getElementById("manual1Input");
+  canvasElem.addEventListener("mousedown", function(e) {
+    cornerArray = getMousePosition(canvasElem, e, cornerArray);
+    console.log(cornerArray)
+    if (cornerArray.length == 4) {
+      return crop1 (src, cornerArray);
+    }
+  });
+}
+
+function getMousePosition(canvas, event, cornerArray) {
+  let rect = canvas.getBoundingClientRect();
+  let x = (event.clientX - rect.left)*2;
+  let y = (event.clientY - rect.top)*2;
+  cornerArray.push([x, y]);
+  return cornerArray;
+}
+
+function crop1(src, cornerArray) {
+  let dstcrop = new cv.Mat();
+
+  let a = cornerArray[0];
+  let b = cornerArray[1];
+  let c = cornerArray[2];
+  let d = cornerArray[3];
+  let corner1 = new cv.Point(a[0], a[1]);
+  let corner2 = new cv.Point(b[0], b[1]);
+  let corner3 = new cv.Point(c[0], c[1]);
+  let corner4 = new cv.Point(d[0], d[1]);
+
+  let cropArray = [{ corner: corner1 }, { corner: corner2 }, { corner: corner3 }, { corner: corner4 }];
+
+  cropArray.sort((item1, item2) => { return (item1.corner.y < item2.corner.y) ? -1 : (item1.corner.y > item2.corner.y) ? 1 : 0; }).slice(0, 5);
+
+  let tl = cropArray[0].corner.x < cropArray[1].corner.x ? cropArray[0] : cropArray[1];
+  let tr = cropArray[0].corner.x > cropArray[1].corner.x ? cropArray[0] : cropArray[1];
+  let bl = cropArray[2].corner.x < cropArray[3].corner.x ? cropArray[2] : cropArray[3];
+  let br = cropArray[2].corner.x > cropArray[3].corner.x ? cropArray[2] : cropArray[3];
+
+  let widthBottom = Math.hypot(br.corner.x - bl.corner.x, br.corner.y - bl.corner.y);
+  let widthTop = Math.hypot(tr.corner.x - tl.corner.x, tr.corner.y - tl.corner.y);
+  let theWidth = (widthBottom > widthTop) ? widthBottom : widthTop;
+  let heightRight = Math.hypot(tr.corner.x - br.corner.x, tr.corner.y - br.corner.y);
+  let heightLeft = Math.hypot(tl.corner.x - bl.corner.x, tr.corner.y - bl.corner.y);
+  let theHeight = (heightRight > heightLeft) ? heightRight : heightLeft;
+
+  let finalDestCoords = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, theWidth - 1, 0, theWidth - 1, theHeight - 1, 0, theHeight - 1]); //
+  let srcCoords = cv.matFromArray(4, 1, cv.CV_32FC2, [tl.corner.x, tl.corner.y, tr.corner.x, tr.corner.y, br.corner.x, br.corner.y, bl.corner.x, bl.corner.y]);
+  let dsize = new cv.Size(theWidth, theHeight);
+  let M = cv.getPerspectiveTransform(srcCoords, finalDestCoords)
+  cv.warpPerspective(src, dstcrop, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+  //cv.imshow('cropOutput', dstcrop);
+
+  let finalSize = new cv.Size(1700, 3800);
+  featureExtractDetect1(dstcrop, finalSize)
+  return dstcrop;
+}
+
+function auto2() {
+  let src = cv.imread(img2Element);
+  let dst = new cv.Mat();
+  let dstt = new cv.Mat();
+  let ksize = new cv.Size(5,5);
+  cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
+  cv.Canny(dst, dst, 75, 200, 3, false);
+  cv.threshold(dst, dst, 50, 255, cv.THRESH_BINARY);
+
+  let contours = new cv.MatVector();
+  let hierarchy = new cv.Mat();
+  cv.findContours(dst, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+
+  // for (let i = 0; i < contours.size(); ++i) {
+  //   let color = new cv.Scalar(240, 248, 255);
+  //   cv.drawContours(dst, contours, i, color, 5, cv.LINE_8, hierarchy, 100);
+  // }
+
+  let areaarr = [];
+
+  for (let i = 0; i < contours.size(); i++) {
+    areaarr.push(cv.arcLength(contours.get(i), false))
+  }
+
+  areaarr.sort(function(a, b){return a-b});
+  areaarr.reverse();
+  newarr = areaarr.slice(0,1);
+  //console.log(areaarr)
+
+  for (let i = 0; i < contours.size(); i++) {
+    let color = new cv.Scalar(240, 248, 255);
+    let area = cv.arcLength(contours.get(i), false);
+    if (newarr.includes(area)) {
+      realContour = contours.get(i);
+      //console.log(area)
+      cv.drawContours(dst, contours, i, color, 5, cv.LINE_8, hierarchy, 100);
+    }
+  }
+
+  contPeri = cv.arcLength(realContour, true)
+  contApprox = new cv.Mat();
+  cv.approxPolyDP(realContour, contApprox, 0.02 * contPeri, true)
+
+  let corner1 = new cv.Point(contApprox.data32S[0], contApprox.data32S[1]);
+  let corner2 = new cv.Point(contApprox.data32S[2], contApprox.data32S[3]);
+  let corner3 = new cv.Point(contApprox.data32S[4], contApprox.data32S[5]);
+  let corner4 = new cv.Point(contApprox.data32S[6], contApprox.data32S[7]);
+
+  let cornerArray = [{ corner: corner1 }, { corner: corner2 }, { corner: corner3 }, { corner: corner4 }];
+
+  cornerArray.sort((item1, item2) => { return (item1.corner.y < item2.corner.y) ? -1 : (item1.corner.y > item2.corner.y) ? 1 : 0; }).slice(0, 5);
+
+  let tl = cornerArray[0].corner.x < cornerArray[1].corner.x ? cornerArray[0] : cornerArray[1];
+  let tr = cornerArray[0].corner.x > cornerArray[1].corner.x ? cornerArray[0] : cornerArray[1];
+  let bl = cornerArray[2].corner.x < cornerArray[3].corner.x ? cornerArray[2] : cornerArray[3];
+  let br = cornerArray[2].corner.x > cornerArray[3].corner.x ? cornerArray[2] : cornerArray[3];
+
+  let widthBottom = Math.hypot(br.corner.x - bl.corner.x, br.corner.y - bl.corner.y);
+  let widthTop = Math.hypot(tr.corner.x - tl.corner.x, tr.corner.y - tl.corner.y);
+  let theWidth = (widthBottom > widthTop) ? widthBottom : widthTop;
+  let heightRight = Math.hypot(tr.corner.x - br.corner.x, tr.corner.y - br.corner.y);
+  let heightLeft = Math.hypot(tl.corner.x - bl.corner.x, tr.corner.y - bl.corner.y);
+  let theHeight = (heightRight > heightLeft) ? heightRight : heightLeft;
+
+  let finalDestCoords = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, theWidth - 1, 0, theWidth - 1, theHeight - 1, 0, theHeight - 1]); //
+  let srcCoords = cv.matFromArray(4, 1, cv.CV_32FC2, [tl.corner.x, tl.corner.y, tr.corner.x, tr.corner.y, br.corner.x, br.corner.y, bl.corner.x, bl.corner.y]);
+  let dsize = new cv.Size(theWidth, theHeight);
+  let M = cv.getPerspectiveTransform(srcCoords, finalDestCoords)
+  cv.warpPerspective(src, dstt, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+
+  let dsize2 = new cv.Size(850, 1900);
+  cv.resize(dstt, dstt, dsize2, 0, 0, cv.INTER_AREA);
+
+  cv.imshow('canvas2AutoOutput', dstt);
+  src.delete();
+  dst.delete();
+  contours.delete();
+  hierarchy.delete();
+
+  return dstt;
+}
+
+function manual2() {
+
+
+  src = cv.imread(img2Element);
+  src_display = cv.imread(img2Element);
+  let dsize2 = new cv.Size(src_display.cols/2, src_display.rows/2);
+  cv.resize(src_display, src_display, dsize2, 0, 0, cv.INTER_AREA);
+  cv.imshow("manual2Input", src_display);
+  var cornerArray = [];
+
+  //let canvasElem = document.querySelector("canvas");
+  let canvasElem = document.getElementById("manual2Input");
+  canvasElem.addEventListener("mousedown", function(e) {
+    cornerArray = getMousePosition(canvasElem, e, cornerArray);
+    console.log(cornerArray)
+    if (cornerArray.length == 4) {
+      return crop1 (src, cornerArray);
+    }
+  });
+}
+
+function crop2(src, cornerArray) {
+  let dstcrop = new cv.Mat();
+
+  let a = cornerArray[0];
+  let b = cornerArray[1];
+  let c = cornerArray[2];
+  let d = cornerArray[3];
+  let corner1 = new cv.Point(a[0], a[1]);
+  let corner2 = new cv.Point(b[0], b[1]);
+  let corner3 = new cv.Point(c[0], c[1]);
+  let corner4 = new cv.Point(d[0], d[1]);
+
+  let cropArray = [{ corner: corner1 }, { corner: corner2 }, { corner: corner3 }, { corner: corner4 }];
+
+  cropArray.sort((item1, item2) => { return (item1.corner.y < item2.corner.y) ? -1 : (item1.corner.y > item2.corner.y) ? 1 : 0; }).slice(0, 5);
+
+  let tl = cropArray[0].corner.x < cropArray[1].corner.x ? cropArray[0] : cropArray[1];
+  let tr = cropArray[0].corner.x > cropArray[1].corner.x ? cropArray[0] : cropArray[1];
+  let bl = cropArray[2].corner.x < cropArray[3].corner.x ? cropArray[2] : cropArray[3];
+  let br = cropArray[2].corner.x > cropArray[3].corner.x ? cropArray[2] : cropArray[3];
+
+  let widthBottom = Math.hypot(br.corner.x - bl.corner.x, br.corner.y - bl.corner.y);
+  let widthTop = Math.hypot(tr.corner.x - tl.corner.x, tr.corner.y - tl.corner.y);
+  let theWidth = (widthBottom > widthTop) ? widthBottom : widthTop;
+  let heightRight = Math.hypot(tr.corner.x - br.corner.x, tr.corner.y - br.corner.y);
+  let heightLeft = Math.hypot(tl.corner.x - bl.corner.x, tr.corner.y - bl.corner.y);
+  let theHeight = (heightRight > heightLeft) ? heightRight : heightLeft;
+
+  let finalDestCoords = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, theWidth - 1, 0, theWidth - 1, theHeight - 1, 0, theHeight - 1]); //
+  let srcCoords = cv.matFromArray(4, 1, cv.CV_32FC2, [tl.corner.x, tl.corner.y, tr.corner.x, tr.corner.y, br.corner.x, br.corner.y, bl.corner.x, bl.corner.y]);
+  let dsize = new cv.Size(theWidth, theHeight);
+  let M = cv.getPerspectiveTransform(srcCoords, finalDestCoords)
+  cv.warpPerspective(src, dstcrop, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+  //cv.imshow('cropOutput', dstcrop);
+
+  let finalSize = new cv.Size(1700, 3800);
+  featureExtractDetect2(dstcrop, finalSize)
+  return dstcrop;
+}
+
+function additionalCrops(dstFinal) {
+  let featureArr = []
+  // console.log(annotationJSON.sections[14].bubbles[0])
+
+  for (i = 0; i < annotationJSON.sections.length; i++){
+    var section = annotationJSON.sections[i]
+    let sectionArr = []
+    let colorArr = []
+
+    if (section.bubbles) {
+      let bubbleArr = [];
+      for (j = 0; j < section.bubbles.length; j++){
+        let bubble = section.bubbles[j];
+
+        let rect = new cv.Rect(bubble.TL_X, bubble.TL_Y, (bubble.BR_X-bubble.TL_X), (bubble.BR_Y-bubble.TL_Y));
+        let feature = dstFinal.roi(rect);
+        let filled = isFilled(feature, 0.6, 0.45);
+
+        if (filled != 0 && !colorOK(feature)) {
+          colorArr.push("bubbleColor");
+        }
+
+        bubbleArr.push(filled);
+      }
+      sectionArr.push(bubbleArr);
+    } else {
+      sectionArr.push(null)
+    }
+
+    if (section.writeins) {
+      let writeinsArr = [];
+      for (k = 0; k < section.writeins.length; k++){
+        let writein = section.writeins[k];
+
+        let rect = new cv.Rect(writein.TL_X, writein.TL_Y, (writein.BR_X-writein.TL_X), (writein.BR_Y-writein.TL_Y));
+        let feature = dstFinal.roi(rect);
+        let filled = isFilled(feature, 0.25, 0.15);
+
+        if (filled != 0 && !colorOK(feature)) {
+          colorArr.push("writeinColor");
+        }
+
+        writeinsArr.push(filled);
+      }
+      sectionArr.push(writeinsArr);
+    } else {
+      sectionArr.push(null)
+    }
+
+    if (section.signatures) {
+      let sigsArr = [];
+      for (l = 0; l < section.signatures.length; k++){
+        let sig = section.signatures[l]
+
+        let rect = new cv.Rect(sig.TL_X, sig.TL_Y, (sig.BR_X-sig.TL_X), (sig.BR_Y-sig.TL_Y));
+        let feature = dstFinal.roi(rect);
+        let filled = isFilled(feature, 0.25, 0.15);
+
+        if (filled != 0 && !colorOK(feature)) {
+          colorArr.push("sigColor");
+        }
+
+        sigsArr.push(filled);
+      }
+      sectionArr.push(sigsArr);
+    } else {
+      sectionArr.push(null)
+    }
+    sectionArr.push(section.max)
+    sectionArr.push(colorArr)
+    featureArr.push(sectionArr)
+  }
+  return featureArr;
+}
+
+function featureExtractDetect1(dstFinal, finalSize) {
+  cv.resize(dstFinal, dstFinal, finalSize, 0, 0, cv.INTER_AREA);
+  var features1 = additionalCrops(dstFinal);
+
+  var errorArr1 = [];
+
+  for (s = 0; s < features1.length; s++) {
+  //for (s = 0; s < 2; s++) {
+    let section = features1[s];
+    let errs = []; //[bubbleCt, bubbleColor, writeinColor, sigColor, writeInBubble]
+
+    //Number Bubbles Correct
+    let bubbleCter = 0;
+    for (bb = 0; bb < section[0].length; bb++) {
+      if (section[0][bb] != 0) {
+        bubbleCter++;
+      }
+    }
+
+    if (bubbleCter > section[3]) {
+      errs.push(bubbleCter);
+    } else {
+      errs.push('OK');
+    }
+
+    //Sections Filled In (No Empty Sections)
+    if (bubbleCter == 0) {
+      errs.push('Empty Section');
+    } else {
+      errs.push('OK');
+    }
+
+    // //Color Correct
+    if (section[4].includes("bubbleColor")) {
+      errs.push("bubbleColor");
+    } else {
+      errs.push("OK")
+    }
+    if (section[4].includes("writeinColor")) {
+      errs.push("writeinColor");
+    } else {
+      errs.push("OK")
+    }
+    if (section[4].includes("sigColor")) {
+      errs.push("sigColor");
+    } else {
+      errs.push("OK")
+    }
+
+    //Write-in Matching Bubble
+    let writeInBubbleFlag = 0;
+    if (section[1]) {
+      for (w = 0; w < section[1].length; w++) {
+        if (section[1][w] != 0 && section[0][section[0].length-section[1].length+w] == 0) { //If there's a write-in, there must be a corresponding bubble
+          writeInBubbleFlag++;
+        }
+      }
+
+      for (b = section[0].length-section[1].length; b < section[0].length; b++) {
+        if (section[0][b] != 0 && section[1][section[0].length-b-1] == 0) { //If there's a bubble, there must be a corresponding write-in
+          writeInBubbleFlag++;
+        }
+      }
+    }
+    if (writeInBubbleFlag > 0) {
+      errs.push('writeinBubbleMatch');
+    } else {
+      errs.push('OK')
+    }
+
+    errorArr1.push(errs);
+  }
+  console.log(features1);
+  console.log(errorArr1);
+}
+
+function featureExtractDetect2(dstFinal, finalSize) {
+  cv.resize(dstFinal, dstFinal, finalSize, 0, 0, cv.INTER_AREA);
+  var features2 = additionalCrops(dstFinal);
+
+  var errorArr2 = [];
+
+  for (s = 0; s < features2.length; s++) {
+  //for (s = 0; s < 2; s++) {
+    let section = features2[s];
+    let errs = []; //[bubbleCt, bubbleColor, writeinColor, sigColor, writeInBubble]
+
+    //Number Bubbles Correct
+    let bubbleCter = 0;
+    for (bb = 0; bb < section[0].length; bb++) {
+      if (section[0][bb] != 0) {
+        bubbleCter++;
+      }
+    }
+
+    if (bubbleCter > section[3]) {
+      errs.push(bubbleCter);
+    } else {
+      errs.push('OK');
+    }
+
+    //Sections Filled In (No Empty Sections)
+    if (bubbleCter == 0) {
+      errs.push('Empty Section');
+    } else {
+      errs.push('OK');
+    }
+
+    //Color Correct
+    if (section[4].includes("bubbleColor")) {
+      errs.push("bubbleColor");
+    } else {
+      errs.push("OK")
+    }
+    if (section[4].includes("writeinColor")) {
+      errs.push("writeinColor");
+    } else {
+      errs.push("OK")
+    }
+    if (section[4].includes("sigColor")) {
+      errs.push("sigColor");
+    } else {
+      errs.push("OK")
+    }
+
+    //Write-in Matching Bubble
+    let writeInBubbleFlag = 0;
+    if (section[1]) {
+      for (w = 0; w < section[1].length; w++) {
+        if (section[1][w] != 0 && section[0][section[0].length-section[1].length+w] == 0) { //If there's a write-in, there must be a corresponding bubble
+          writeInBubbleFlag++;
+        }
+      }
+
+      for (b = section[0].length-section[1].length; b < section[0].length; b++) {
+        if (section[0][b] != 0 && section[1][section[0].length-b-1] == 0) { //If there's a bubble, there must be a corresponding write-in
+          writeInBubbleFlag++;
+        }
+      }
+    }
+    if (writeInBubbleFlag > 0) {
+      errs.push('writeinBubbleMatch');
+    } else {
+      errs.push('OK')
+    }
+
+    errorArr2.push(errs);
+  }
+  console.log(features2);
+  console.log(errorArr2);
+}
+
+
+function getCandidate(sectionNum,bubbleNum) {
+  return annotationJSON.sections[sectionNum].bubbles[bubbleNum].text;
+}
+
+function getSectionDescs() {
+  let descArr = []
+  for (s = 0; s < annotationJSON.sections.length; s++) {
+    descArr.push(annotationJSON.sections[s].desc)
+  }
+  return descArr;
+}
+
+function isFilled(feat, threshComplete, threshSemi) {
+  let feature = new cv.Mat();
+  cv.cvtColor(feat, feature, cv.COLOR_RGBA2GRAY);
+  cv.threshold(feature, feature, 200, 255, cv.THRESH_BINARY | cv.THRESH_OTSU);
+  let percentageFilled = 1.0 - cv.countNonZero(feature)/parseFloat(feature.rows*feature.cols)
+
+  if (percentageFilled >= threshComplete) {
+    return 2;
+  } else if (percentageFilled >= threshSemi) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+function colorOK(feature) {
+  let color = descrimColors(feature);
+  return (color == "blue" || color == "black");
+}
+
+function descrimColors(mat) {
+  let mean = cv.mean(mat);
+  let black = [94,95,93];
+  let blue = [118,107,161];
+  let red = [232, 96, 100];
+  let mb = loss(mean, black);
+  let mr = loss(mean, red);
+  let mbl = loss(mean, blue);
+  if (mb > mbl) {
+    if (mr > mbl){
+      return "blue";
+    }
+    else {
+      return "red";
+    }
+  }
+  else {
+    if (mr > mb){
+      return "black";
+    }
+    else {
+      return "red";
+    }
+  }
+
+}
+
+function loss(array1, array2) {
+  return (array1[0]-array2[0])**2 + (array1[1]-array2[1])**2 + (array1[2]-array2[2])**2;
+}
+
+function onOpenCvReady() {
+  console.log("opencv is ready.");
+}
+
+function getAnnotation() {
+  var annotation = '{"state":"AZ","district":5,"page":1,"sections":[{"desc":"president / vice president","max":1,"secCoords":{"TL_X":130,"TL_Y":960,"BR_X":618,"BR_Y":1660},"bubbles":[{"TL_X":560,"TL_Y":1075,"BR_X":593,"BR_Y":1100,"text":"trump pence"},{"TL_X":560,"TL_Y":1225,"BR_X":593,"BR_Y":1250,"text":"biden harris"},{"TL_X":560,"TL_Y":1375,"BR_X":593,"BR_Y":1400,"text":"jorgensen cohen"},{"TL_X":560,"TL_Y":1525,"BR_X":593,"BR_Y":1550,"text":"write-in"}],"writeins":[{"TL_X":130,"TL_Y":1550,"BR_X":618,"BR_Y":1660}],"signatures":null},{"desc":"us senate","max":1,"secCoords":{"TL_X":130,"TL_Y":1665,"BR_X":618,"BR_Y":1910},"bubbles":[{"TL_X":560,"TL_Y":1775,"BR_X":593,"BR_Y":1800,"text":"mcsally"},{"TL_X":560,"TL_Y":1925,"BR_X":593,"BR_Y":1950,"text":"kelly"},{"TL_X":560,"TL_Y":2075,"BR_X":593,"BR_Y":2100,"text":"write-in"}],"writeins":[{"TL_X":270,"TL_Y":1869,"BR_X":554,"BR_Y":1906}],"signatures":null},{"desc":"us rep","max":1,"secCoords":{"TL_X":130,"TL_Y":1910,"BR_X":618,"BR_Y":2160},"bubbles":[{"TL_X":560,"TL_Y":2025,"BR_X":593,"BR_Y":2050,"text":"biggs"},{"TL_X":560,"TL_Y":2075,"BR_X":593,"BR_Y":2100,"text":"greene"},{"TL_X":560,"TL_Y":2125,"BR_X":593,"BR_Y":2150,"text":"write-in"}],"writeins":[{"TL_X":290,"TL_Y":2115,"BR_X":545,"BR_Y":2158}],"signatures":null},{"desc":"state senate","max":1,"secCoords":{"TL_X":130,"TL_Y":2215,"BR_X":618,"BR_Y":2463},"bubbles":[{"TL_X":560,"TL_Y":2325,"BR_X":593,"BR_Y":2350,"text":"mesnard"},{"TL_X":560,"TL_Y":2375,"BR_X":593,"BR_Y":2400,"text":"kurdoglu"},{"TL_X":560,"TL_Y":2425,"BR_X":593,"BR_Y":2450,"text":"write-in"}],"writeins":[{"TL_X":290,"TL_Y":2415,"BR_X":545,"BR_Y":2460}],"signatures":null},{"desc":"state rep","max":2,"secCoords":{"TL_X":130,"TL_Y":2463,"BR_X":618,"BR_Y":2813},"bubbles":[{"TL_X":560,"TL_Y":2575,"BR_X":593,"BR_Y":2600,"text":"weninger"},{"TL_X":560,"TL_Y":2625,"BR_X":593,"BR_Y":2650,"text":"harris"},{"TL_X":560,"TL_Y":2675,"BR_X":593,"BR_Y":2700,"text":"pawlik"},{"TL_X":560,"TL_Y":2725,"BR_X":593,"BR_Y":2750,"text":"write-in 1"},{"TL_X":560,"TL_Y":2775,"BR_X":593,"BR_Y":2800,"text":"write-in 2"}],"writeins":[{"TL_X":290,"TL_Y":2715,"BR_X":545,"BR_Y":2760},{"TL_X":290,"TL_Y":2763,"BR_X":545,"BR_Y":2810}],"signatures":null},{"desc":"corporation commisioner","max":3,"secCoords":{"TL_X":130,"TL_Y":2815,"BR_X":618,"BR_Y":3363},"bubbles":[{"TL_X":560,"TL_Y":2925,"BR_X":593,"BR_Y":2950,"text":"marquez"},{"TL_X":560,"TL_Y":2975,"BR_X":593,"BR_Y":3000,"text":"o\'connor"},{"TL_X":560,"TL_Y":3025,"BR_X":593,"BR_Y":3050,"text":"sloan"},{"TL_X":560,"TL_Y":3075,"BR_X":593,"BR_Y":3100,"text":"mundell"},{"TL_X":560,"TL_Y":3125,"BR_X":593,"BR_Y":3150,"text":"stanfield"},{"TL_X":560,"TL_Y":3175,"BR_X":593,"BR_Y":3200,"text":"tovar"},{"TL_X":560,"TL_Y":3225,"BR_X":593,"BR_Y":3250,"text":"write-in 1"},{"TL_X":560,"TL_Y":3275,"BR_X":593,"BR_Y":3300,"text":"write-in 2"},{"TL_X":560,"TL_Y":3325,"BR_X":593,"BR_Y":3350,"text":"write-in 3"}],"writeins":[{"TL_X":290,"TL_Y":3215,"BR_X":545,"BR_Y":3260},{"TL_X":290,"TL_Y":3265,"BR_X":545,"BR_Y":3310},{"TL_X":290,"TL_Y":3315,"BR_X":545,"BR_Y":3360}],"signatures":null},{"desc":"board of supervisors","max":1,"secCoords":{"TL_X":614,"TL_Y":511,"BR_X":1101,"BR_Y":813},"bubbles":[{"TL_X":1046,"TL_Y":675,"BR_X":1079,"BR_Y":700,"text":"sellers"},{"TL_X":1046,"TL_Y":725,"BR_X":1079,"BR_Y":750,"text":"hodge"},{"TL_X":1046,"TL_Y":775,"BR_X":1079,"BR_Y":800,"text":"write-in"}],"writeins":[{"TL_X":753,"TL_Y":765,"BR_X":1041,"BR_Y":810}],"signatures":null},{"desc":"county assessor","max":1,"secCoords":{"TL_X":614,"TL_Y":813,"BR_X":1101,"BR_Y":1063},"bubbles":[{"TL_X":1046,"TL_Y":925,"BR_X":1079,"BR_Y":950,"text":"cook"},{"TL_X":1046,"TL_Y":975,"BR_X":1079,"BR_Y":1000,"text":"connor"},{"TL_X":1046,"TL_Y":1025,"BR_X":1079,"BR_Y":1050,"text":"write-in"}],"writeins":[{"TL_X":753,"TL_Y":1015,"BR_X":1041,"BR_Y":1060}],"signatures":null},{"desc":"county attorney","max":1,"secCoords":{"TL_X":614,"TL_Y":1066,"BR_X":1101,"BR_Y":1312},"bubbles":[{"TL_X":1046,"TL_Y":1175,"BR_X":1079,"BR_Y":1200,"text":"adel"},{"TL_X":1046,"TL_Y":1225,"BR_X":1079,"BR_Y":1250,"text":"gunnigle"},{"TL_X":1046,"TL_Y":1275,"BR_X":1079,"BR_Y":1300,"text":"write-in"}],"writeins":[{"TL_X":753,"TL_Y":1265,"BR_X":1041,"BR_Y":1310}],"signatures":null},{"desc":"county recorder","max":1,"secCoords":{"TL_X":614,"TL_Y":1313,"BR_X":1101,"BR_Y":1562},"bubbles":[{"TL_X":1046,"TL_Y":1425,"BR_X":1079,"BR_Y":1450,"text":"richer"},{"TL_X":1046,"TL_Y":1475,"BR_X":1079,"BR_Y":1500,"text":"fontes"},{"TL_X":1046,"TL_Y":1525,"BR_X":1079,"BR_Y":1550,"text":"write-in"}],"writeins":[{"TL_X":753,"TL_Y":1515,"BR_X":1041,"BR_Y":1560}],"signatures":null},{"desc":"county school superintendent","max":1,"secCoords":{"TL_X":614,"TL_Y":1563,"BR_X":1101,"BR_Y":1813},"bubbles":[{"TL_X":1046,"TL_Y":1675,"BR_X":1079,"BR_Y":1700,"text":"watson"},{"TL_X":1046,"TL_Y":1725,"BR_X":1079,"BR_Y":1750,"text":"casteen"},{"TL_X":1046,"TL_Y":1775,"BR_X":1079,"BR_Y":1800,"text":"write-in"}],"writeins":[{"TL_X":753,"TL_Y":1765,"BR_X":1041,"BR_Y":1810}],"signatures":null},{"desc":"sherrif","max":1,"secCoords":{"TL_X":614,"TL_Y":1812,"BR_X":1101,"BR_Y":2062},"bubbles":[{"TL_X":1046,"TL_Y":1925,"BR_X":1079,"BR_Y":1950,"text":"sheridan"},{"TL_X":1046,"TL_Y":1975,"BR_X":1079,"BR_Y":2000,"text":"pezone"},{"TL_X":1046,"TL_Y":2025,"BR_X":1079,"BR_Y":2050,"text":"write-in"}],"writeins":[{"TL_X":753,"TL_Y":2015,"BR_X":1041,"BR_Y":2060}],"signatures":null},{"desc":"county treasurer","max":1,"secCoords":{"TL_X":614,"TL_Y":1812,"BR_X":1101,"BR_Y":2066},"bubbles":[{"TL_X":1046,"TL_Y":2175,"BR_X":1079,"BR_Y":2200,"text":"allen"},{"TL_X":1046,"TL_Y":2225,"BR_X":1079,"BR_Y":2250,"text":"toporek"},{"TL_X":1046,"TL_Y":2275,"BR_X":1079,"BR_Y":2300,"text":"write-in"}],"writeins":[{"TL_X":753,"TL_Y":2265,"BR_X":1041,"BR_Y":2310}],"signatures":null},{"desc":"special healthcare","max":1,"secCoords":{"TL_X":614,"TL_Y":2313,"BR_X":1101,"BR_Y":2714},"bubbles":[{"TL_X":1046,"TL_Y":2575,"BR_X":1079,"BR_Y":2600,"text":"harden"},{"TL_X":1046,"TL_Y":2625,"BR_X":1079,"BR_Y":2650,"text":"farnsworth"},{"TL_X":1046,"TL_Y":2675,"BR_X":1079,"BR_Y":2700,"text":"write-in"}],"writeins":[{"TL_X":753,"TL_Y":2720,"BR_X":1041,"BR_Y":2765}],"signatures":null},{"desc":"prop 449","max":1,"secCoords":{"TL_X":614,"TL_Y":2713,"BR_X":1101,"BR_Y":3315},"bubbles":[{"TL_X":1046,"TL_Y":3225,"BR_X":1079,"BR_Y":3250,"text":"yes"},{"TL_X":1046,"TL_Y":3275,"BR_X":1079,"BR_Y":3300,"text":"no"}],"writeins":null,"signatures":null},{"desc":"county community college at-large","max":1,"secCoords":{"TL_X":1104,"TL_Y":515,"BR_X":1587,"BR_Y":812},"bubbles":[{"TL_X":1533,"TL_Y":675,"BR_X":1566,"BR_Y":700,"text":"thor"},{"TL_X":1533,"TL_Y":725,"BR_X":1566,"BR_Y":750,"text":"boggs"},{"TL_X":1533,"TL_Y":775,"BR_X":1566,"BR_Y":800,"text":"write-in"}],"writeins":[{"TL_X":1242,"TL_Y":765,"BR_X":1532,"BR_Y":810}],"signatures":null},{"desc":"county community college district 1","max":1,"secCoords":{"TL_X":1104,"TL_Y":812,"BR_X":1587,"BR_Y":1112},"bubbles":[{"TL_X":1533,"TL_Y":975,"BR_X":1566,"BR_Y":1000,"text":"smith"},{"TL_X":1533,"TL_Y":1025,"BR_X":1566,"BR_Y":1050,"text":"hendrix"},{"TL_X":1533,"TL_Y":1075,"BR_X":1566,"BR_Y":1100,"text":"write-in"}],"writeins":[{"TL_X":1242,"TL_Y":1065,"BR_X":1532,"BR_Y":1110}],"signatures":null},{"desc":"school gov. board member","max":3,"secCoords":{"TL_X":1104,"TL_Y":1164,"BR_X":1587,"BR_Y":1563},"bubbles":[{"TL_X":1533,"TL_Y":1275,"BR_X":1566,"BR_Y":1300,"text":"wirth"},{"TL_X":1533,"TL_Y":1325,"BR_X":1566,"BR_Y":1350,"text":"mozdzen"},{"TL_X":1533,"TL_Y":1375,"BR_X":1566,"BR_Y":1400,"text":"olive"},{"TL_X":1533,"TL_Y":1425,"BR_X":1566,"BR_Y":1450,"text":"write-in 1"},{"TL_X":1533,"TL_Y":1475,"BR_X":1566,"BR_Y":1500,"text":"write-in 2"},{"TL_X":1533,"TL_Y":1525,"BR_X":1566,"BR_Y":1550,"text":"write-in 3"}],"writeins":[{"TL_X":1242,"TL_Y":1415,"BR_X":1532,"BR_Y":1460},{"TL_X":1242,"TL_Y":1465,"BR_X":1532,"BR_Y":1510},{"TL_X":1242,"TL_Y":1515,"BR_X":1532,"BR_Y":1560}],"signatures":null},{"desc":"question 1","max":1,"secCoords":{"TL_X":1104,"TL_Y":1613,"BR_X":1587,"BR_Y":1915},"bubbles":[{"TL_X":1533,"TL_Y":1825,"BR_X":1566,"BR_Y":1850,"text":"for"},{"TL_X":1533,"TL_Y":1875,"BR_X":1566,"BR_Y":1900,"text":"against"}],"writeins":null,"signatures":null},{"desc":"retain brutinel","max":1,"secCoords":{"TL_X":1104,"TL_Y":2062,"BR_X":1587,"BR_Y":2162},"bubbles":[{"TL_X":1533,"TL_Y":2075,"BR_X":1566,"BR_Y":2100,"text":"yes"},{"TL_X":1533,"TL_Y":2125,"BR_X":1566,"BR_Y":2150,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain gould","max":1,"secCoords":{"TL_X":1104,"TL_Y":2162,"BR_X":1587,"BR_Y":2262},"bubbles":[{"TL_X":1533,"TL_Y":2175,"BR_X":1566,"BR_Y":2200,"text":"yes"},{"TL_X":1533,"TL_Y":2225,"BR_X":1566,"BR_Y":2250,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain lopez","max":1,"secCoords":{"TL_X":1104,"TL_Y":2262,"BR_X":1587,"BR_Y":2362},"bubbles":[{"TL_X":1533,"TL_Y":2275,"BR_X":1566,"BR_Y":2300,"text":"yes"},{"TL_X":1533,"TL_Y":2325,"BR_X":1566,"BR_Y":2350,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain howe","max":1,"secCoords":{"TL_X":1104,"TL_Y":2562,"BR_X":1587,"BR_Y":2662},"bubbles":[{"TL_X":1533,"TL_Y":2575,"BR_X":1566,"BR_Y":2600,"text":"yes"},{"TL_X":1533,"TL_Y":2625,"BR_X":1566,"BR_Y":2650,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain mcmurdie","max":1,"secCoords":{"TL_X":1104,"TL_Y":2662,"BR_X":1587,"BR_Y":2762},"bubbles":[{"TL_X":1533,"TL_Y":2675,"BR_X":1566,"BR_Y":2700,"text":"yes"},{"TL_X":1533,"TL_Y":2725,"BR_X":1566,"BR_Y":2750,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain morse","max":1,"secCoords":{"TL_X":1104,"TL_Y":2762,"BR_X":1587,"BR_Y":2862},"bubbles":[{"TL_X":1533,"TL_Y":2775,"BR_X":1566,"BR_Y":2800,"text":"yes"},{"TL_X":1533,"TL_Y":2825,"BR_X":1566,"BR_Y":2850,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain perkins","max":1,"secCoords":{"TL_X":1104,"TL_Y":2862,"BR_X":1587,"BR_Y":2962},"bubbles":[{"TL_X":1533,"TL_Y":2875,"BR_X":1566,"BR_Y":2900,"text":"yes"},{"TL_X":1533,"TL_Y":2925,"BR_X":1566,"BR_Y":2950,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain thumma","max":1,"secCoords":{"TL_X":1104,"TL_Y":2962,"BR_X":1587,"BR_Y":3062},"bubbles":[{"TL_X":1533,"TL_Y":2975,"BR_X":1566,"BR_Y":3000,"text":"yes"},{"TL_X":1533,"TL_Y":3025,"BR_X":1566,"BR_Y":3050,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain weinzweig","max":1,"secCoords":{"TL_X":1104,"TL_Y":3062,"BR_X":1587,"BR_Y":3162},"bubbles":[{"TL_X":1533,"TL_Y":3075,"BR_X":1566,"BR_Y":3100,"text":"yes"},{"TL_X":1533,"TL_Y":3125,"BR_X":1566,"BR_Y":3150,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain adleman","max":1,"secCoords":{"TL_X":1104,"TL_Y":3314,"BR_X":1587,"BR_Y":3414},"bubbles":[{"TL_X":1533,"TL_Y":3325,"BR_X":1566,"BR_Y":3350,"text":"yes"},{"TL_X":1533,"TL_Y":3375,"BR_X":1566,"BR_Y":3400,"text":"no"}],"writeins":null,"signatures":null},{"desc":"retain agne","max":1,"secCoords":{"TL_X":1104,"TL_Y":3414,"BR_X":1587,"BR_Y":3514},"bubbles":[{"TL_X":1533,"TL_Y":3425,"BR_X":1566,"BR_Y":3450,"text":"yes"},{"TL_X":1533,"TL_Y":3475,"BR_X":1566,"BR_Y":3500,"text":"no"}],"writeins":null,"signatures":null}]}'
+
+
+  var annotationtwo = '{"state":"AZ","district":5,"page":1,"sections":[{"desc":"Retain Beresky","max":1,"secCoords":{"TL_X":130,"TL_Y":365,"BR_X":615,"BR_Y":460},"bubbles":[{"TL_X":560,"TL_Y":375,"BR_X":593,"BR_Y":400,"text":"Yes"},{"TL_X":560,"TL_Y":425,"BR_X":593,"BR_Y":450,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Blaney","max":1,"secCoords":{"TL_X":130,"TL_Y":465,"BR_X":615,"BR_Y":560},"bubbles":[{"TL_X":560,"TL_Y":475,"BR_X":593,"BR_Y":500,"text":"Yes"},{"TL_X":560,"TL_Y":525,"BR_X":593,"BR_Y":550,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Bustamante","max":1,"secCoords":{"TL_X":130,"TL_Y":565,"BR_X":615,"BR_Y":660},"bubbles":[{"TL_X":560,"TL_Y":575,"BR_X":593,"BR_Y":600,"text":"Yes"},{"TL_X":560,"TL_Y":625,"BR_X":593,"BR_Y":650,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Coffey","max":1,"secCoords":{"TL_X":130,"TL_Y":665,"BR_X":615,"BR_Y":760},"bubbles":[{"TL_X":560,"TL_Y":675,"BR_X":593,"BR_Y":700,"text":"Yes"},{"TL_X":560,"TL_Y":725,"BR_X":593,"BR_Y":750,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Cohen (Bruce)","max":1,"secCoords":{"TL_X":130,"TL_Y":765,"BR_X":615,"BR_Y":860},"bubbles":[{"TL_X":560,"TL_Y":775,"BR_X":593,"BR_Y":800,"text":"Yes"},{"TL_X":560,"TL_Y":825,"BR_X":593,"BR_Y":850,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Cohen (Suzanne)","max":1,"secCoords":{"TL_X":130,"TL_Y":865,"BR_X":615,"BR_Y":960},"bubbles":[{"TL_X":560,"TL_Y":875,"BR_X":593,"BR_Y":900,"text":"Yes"},{"TL_X":560,"TL_Y":925,"BR_X":593,"BR_Y":950,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Contes","max":1,"secCoords":{"TL_X":130,"TL_Y":965,"BR_X":615,"BR_Y":1060},"bubbles":[{"TL_X":560,"TL_Y":975,"BR_X":593,"BR_Y":1000,"text":"Yes"},{"TL_X":560,"TL_Y":1025,"BR_X":593,"BR_Y":1046,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Coury","max":1,"secCoords":{"TL_X":130,"TL_Y":1065,"BR_X":615,"BR_Y":1160},"bubbles":[{"TL_X":560,"TL_Y":1075,"BR_X":593,"BR_Y":1100,"text":"Yes"},{"TL_X":560,"TL_Y":1125,"BR_X":593,"BR_Y":1150,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Driggs","max":1,"secCoords":{"TL_X":130,"TL_Y":1165,"BR_X":615,"BR_Y":1260},"bubbles":[{"TL_X":560,"TL_Y":1175,"BR_X":593,"BR_Y":1200,"text":"Yes"},{"TL_X":560,"TL_Y":1225,"BR_X":593,"BR_Y":1250,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Fisk","max":1,"secCoords":{"TL_X":130,"TL_Y":1265,"BR_X":615,"BR_Y":1360},"bubbles":[{"TL_X":560,"TL_Y":1275,"BR_X":593,"BR_Y":1300,"text":"Yes"},{"TL_X":560,"TL_Y":1325,"BR_X":593,"BR_Y":1350,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Gates","max":1,"secCoords":{"TL_X":130,"TL_Y":1365,"BR_X":615,"BR_Y":1460},"bubbles":[{"TL_X":560,"TL_Y":1375,"BR_X":593,"BR_Y":1400,"text":"Yes"},{"TL_X":560,"TL_Y":1425,"BR_X":593,"BR_Y":1450,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Gentry","max":1,"secCoords":{"TL_X":130,"TL_Y":1465,"BR_X":615,"BR_Y":1560},"bubbles":[{"TL_X":560,"TL_Y":1475,"BR_X":593,"BR_Y":1500,"text":"Yes"},{"TL_X":560,"TL_Y":1525,"BR_X":593,"BR_Y":1550,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Gordon","max":1,"secCoords":{"TL_X":130,"TL_Y":1565,"BR_X":615,"BR_Y":1660},"bubbles":[{"TL_X":560,"TL_Y":1575,"BR_X":593,"BR_Y":1600,"text":"Yes"},{"TL_X":560,"TL_Y":1625,"BR_X":593,"BR_Y":1650,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Hannah","max":1,"secCoords":{"TL_X":130,"TL_Y":1665,"BR_X":615,"BR_Y":1760},"bubbles":[{"TL_X":560,"TL_Y":1675,"BR_X":593,"BR_Y":1700,"text":"Yes"},{"TL_X":560,"TL_Y":1725,"BR_X":593,"BR_Y":1750,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Kemp","max":1,"secCoords":{"TL_X":130,"TL_Y":1765,"BR_X":615,"BR_Y":1860},"bubbles":[{"TL_X":560,"TL_Y":1775,"BR_X":593,"BR_Y":1800,"text":"Yes"},{"TL_X":560,"TL_Y":1825,"BR_X":593,"BR_Y":1850,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Kiley","max":1,"secCoords":{"TL_X":130,"TL_Y":1865,"BR_X":615,"BR_Y":1960},"bubbles":[{"TL_X":560,"TL_Y":1875,"BR_X":593,"BR_Y":1900,"text":"Yes"},{"TL_X":560,"TL_Y":1925,"BR_X":593,"BR_Y":1950,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Labiana","max":1,"secCoords":{"TL_X":130,"TL_Y":1965,"BR_X":615,"BR_Y":2060},"bubbles":[{"TL_X":560,"TL_Y":1975,"BR_X":593,"BR_Y":2000,"text":"Yes"},{"TL_X":560,"TL_Y":2025,"BR_X":593,"BR_Y":2050,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Lang","max":1,"secCoords":{"TL_X":130,"TL_Y":2065,"BR_X":615,"BR_Y":2160},"bubbles":[{"TL_X":560,"TL_Y":2075,"BR_X":593,"BR_Y":2100,"text":"Yes"},{"TL_X":560,"TL_Y":2125,"BR_X":593,"BR_Y":2150,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Mahoney","max":1,"secCoords":{"TL_X":130,"TL_Y":2165,"BR_X":615,"BR_Y":2260},"bubbles":[{"TL_X":560,"TL_Y":2175,"BR_X":593,"BR_Y":2200,"text":"Yes"},{"TL_X":560,"TL_Y":2225,"BR_X":593,"BR_Y":2250,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Mandell","max":1,"secCoords":{"TL_X":130,"TL_Y":2265,"BR_X":615,"BR_Y":2360},"bubbles":[{"TL_X":560,"TL_Y":2275,"BR_X":593,"BR_Y":2300,"text":"Yes"},{"TL_X":560,"TL_Y":2325,"BR_X":593,"BR_Y":2350,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Marwil","max":1,"secCoords":{"TL_X":130,"TL_Y":2365,"BR_X":615,"BR_Y":2460},"bubbles":[{"TL_X":560,"TL_Y":2375,"BR_X":593,"BR_Y":2400,"text":"Yes"},{"TL_X":560,"TL_Y":2425,"BR_X":593,"BR_Y":2450,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain McCoy","max":1,"secCoords":{"TL_X":130,"TL_Y":2465,"BR_X":615,"BR_Y":2560},"bubbles":[{"TL_X":560,"TL_Y":2475,"BR_X":593,"BR_Y":2500,"text":"Yes"},{"TL_X":560,"TL_Y":2525,"BR_X":593,"BR_Y":2550,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Mead","max":1,"secCoords":{"TL_X":130,"TL_Y":2565,"BR_X":615,"BR_Y":2660},"bubbles":[{"TL_X":560,"TL_Y":2575,"BR_X":593,"BR_Y":2600,"text":"Yes"},{"TL_X":560,"TL_Y":2625,"BR_X":593,"BR_Y":2650,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Mikitish","max":1,"secCoords":{"TL_X":130,"TL_Y":2665,"BR_X":615,"BR_Y":2760},"bubbles":[{"TL_X":560,"TL_Y":2675,"BR_X":593,"BR_Y":2700,"text":"Yes"},{"TL_X":560,"TL_Y":2725,"BR_X":593,"BR_Y":2750,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Minder","max":1,"secCoords":{"TL_X":130,"TL_Y":2765,"BR_X":615,"BR_Y":2860},"bubbles":[{"TL_X":560,"TL_Y":2775,"BR_X":593,"BR_Y":2800,"text":"Yes"},{"TL_X":560,"TL_Y":2825,"BR_X":593,"BR_Y":2850,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Mullins","max":1,"secCoords":{"TL_X":130,"TL_Y":2865,"BR_X":615,"BR_Y":2960},"bubbles":[{"TL_X":560,"TL_Y":2875,"BR_X":593,"BR_Y":2900,"text":"Yes"},{"TL_X":560,"TL_Y":2925,"BR_X":593,"BR_Y":2950,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Palmer","max":1,"secCoords":{"TL_X":130,"TL_Y":2965,"BR_X":615,"BR_Y":3060},"bubbles":[{"TL_X":560,"TL_Y":2975,"BR_X":593,"BR_Y":3000,"text":"Yes"},{"TL_X":560,"TL_Y":3025,"BR_X":593,"BR_Y":3050,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Ponce","max":1,"secCoords":{"TL_X":130,"TL_Y":3065,"BR_X":615,"BR_Y":3160},"bubbles":[{"TL_X":560,"TL_Y":3075,"BR_X":593,"BR_Y":3100,"text":"Yes"},{"TL_X":560,"TL_Y":3125,"BR_X":593,"BR_Y":3150,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Ryan","max":1,"secCoords":{"TL_X":130,"TL_Y":3165,"BR_X":615,"BR_Y":3260},"bubbles":[{"TL_X":560,"TL_Y":3175,"BR_X":593,"BR_Y":3200,"text":"Yes"},{"TL_X":560,"TL_Y":3225,"BR_X":593,"BR_Y":3250,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Sanders","max":1,"secCoords":{"TL_X":130,"TL_Y":3265,"BR_X":615,"BR_Y":3360},"bubbles":[{"TL_X":560,"TL_Y":3275,"BR_X":593,"BR_Y":3300,"text":"Yes"},{"TL_X":560,"TL_Y":3325,"BR_X":593,"BR_Y":3350,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Starr","max":1,"secCoords":{"TL_X":130,"TL_Y":3365,"BR_X":615,"BR_Y":3460},"bubbles":[{"TL_X":560,"TL_Y":3375,"BR_X":593,"BR_Y":3400,"text":"Yes"},{"TL_X":560,"TL_Y":3425,"BR_X":593,"BR_Y":3450,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Stephens","max":1,"secCoords":{"TL_X":130,"TL_Y":3465,"BR_X":615,"BR_Y":3560},"bubbles":[{"TL_X":560,"TL_Y":3475,"BR_X":593,"BR_Y":3500,"text":"Yes"},{"TL_X":560,"TL_Y":3525,"BR_X":593,"BR_Y":3550,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Thomason","max":1,"secCoords":{"TL_X":615,"TL_Y":365,"BR_X":1100,"BR_Y":460},"bubbles":[{"TL_X":1046,"TL_Y":375,"BR_X":1079,"BR_Y":400,"text":"Yes"},{"TL_X":1046,"TL_Y":425,"BR_X":1079,"BR_Y":450,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Thompson","max":1,"secCoords":{"TL_X":615,"TL_Y":465,"BR_X":1100,"BR_Y":560},"bubbles":[{"TL_X":1046,"TL_Y":475,"BR_X":1079,"BR_Y":500,"text":"Yes"},{"TL_X":1046,"TL_Y":525,"BR_X":1079,"BR_Y":550,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Udall","max":1,"secCoords":{"TL_X":615,"TL_Y":565,"BR_X":1100,"BR_Y":660},"bubbles":[{"TL_X":1046,"TL_Y":575,"BR_X":1079,"BR_Y":600,"text":"Yes"},{"TL_X":1046,"TL_Y":625,"BR_X":1079,"BR_Y":650,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Vandenberg","max":1,"secCoords":{"TL_X":615,"TL_Y":665,"BR_X":1100,"BR_Y":760},"bubbles":[{"TL_X":1046,"TL_Y":675,"BR_X":1079,"BR_Y":700,"text":"Yes"},{"TL_X":1046,"TL_Y":725,"BR_X":1079,"BR_Y":750,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Wein","max":1,"secCoords":{"TL_X":615,"TL_Y":765,"BR_X":1100,"BR_Y":860},"bubbles":[{"TL_X":1046,"TL_Y":775,"BR_X":1079,"BR_Y":800,"text":"Yes"},{"TL_X":1046,"TL_Y":825,"BR_X":1079,"BR_Y":850,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Retain Whitten","max":1,"secCoords":{"TL_X":615,"TL_Y":865,"BR_X":1100,"BR_Y":960},"bubbles":[{"TL_X":1046,"TL_Y":875,"BR_X":1079,"BR_Y":900,"text":"Yes"},{"TL_X":1046,"TL_Y":925,"BR_X":1079,"BR_Y":950,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Proposition 207","max":1,"secCoords":{"TL_X":615,"TL_Y":1015,"BR_X":1100,"BR_Y":1660},"bubbles":[{"TL_X":1046,"TL_Y":1575,"BR_X":1079,"BR_Y":1600,"text":"Yes"},{"TL_X":1046,"TL_Y":1625,"BR_X":1079,"BR_Y":1650,"text":"No"}],"writeins":null,"signatures":null},{"desc":"Proposition 208","max":1,"secCoords":{"TL_X":615,"TL_Y":1665,"BR_X":1100,"BR_Y":2265},"bubbles":[{"TL_X":1046,"TL_Y":2175,"BR_X":1079,"BR_Y":2200,"text":"Yes"},{"TL_X":1046,"TL_Y":2225,"BR_X":1079,"BR_Y":2250,"text":"No"}],"writeins":null,"signatures":null}]}'
+  return JSON.parse(annotation)
+}
+
+</script>
+
+
 
   </body>
 </html>
