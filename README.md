@@ -36,7 +36,7 @@ So how did we make it happen?
 - HTML - Website structure.
 - JavaScript - Scripts including data loading and analysis
 - Heroku - Server hosting platform.
-- Domain.com - Our domain name
+- Domain.com - Our domain name.
 
 ## Future Steps
 We do recognize that there are limitations in our project. We are committed to the continual improvement of BallotProof as a service to facilitate greater participation in democracy. In particular, we wish to continue to improve our analysis algorithms, especially automatic cropping. We also wish to include additional testing fields such as required signatures and dates, and our current data structures are set up for that integration. With additional time, tools like Tensorflow JS are appealing as ways to incorporate deep learning within the scope of our work.
