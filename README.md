@@ -1,6 +1,6 @@
 ![logo](logoHiRes.png)
 ## Voting made faster, smarter, and more secure.
-[DevPost for HackGT](https://devpost.com/software/ballotproof-vision)
+[DevPost for HackGT 2020 (TOP 8 PROJECT!)](https://devpost.com/software/ballotproof-vision)
 
 \@authors:\
 [\@Devrath Iyer](https://github.com/DevrathIyer) (Stanford '24)\
